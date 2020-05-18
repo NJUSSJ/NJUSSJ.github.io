@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Fortune">
+
+
+
+
+
+<title>需求工程 | Fortune Blog</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Fortune&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Fortune&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">需求工程</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Fortune</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">May 18, 2020&nbsp;&nbsp;17:37:25</a>
+                        </span>
+                    
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h3 id="需求导论"><a href="#需求导论" class="headerlink" title="需求导论"></a>需求导论</h3><h4 id="应用型软件的模拟特性"><a href="#应用型软件的模拟特性" class="headerlink" title="应用型软件的模拟特性"></a>应用型软件的模拟特性</h4><h5 id="不同类型软件的生产过程："><a href="#不同类型软件的生产过程：" class="headerlink" title="不同类型软件的生产过程："></a>不同类型软件的生产过程：</h5><ol>
+<li>面向专业用户的纯工具型：<ol>
+<li>观念、技术创新</li>
+<li>功能分析</li>
+<li>设计实现集成</li>
+<li>发布</li>
+</ol>
+</li>
+<li>面向普通用户的工具型：<ol>
+<li>有用性（方案权衡和有效的功能配置）</li>
+<li>设计与集成</li>
+<li>发布</li>
+</ol>
+</li>
+<li>应用型：<ol>
+<li>目的（原因）、问题领域的知识</li>
+<li>功能分析（模拟性-结合领域知识）</li>
+<li>设计与集成</li>
+<li>发布</li>
+</ol>
+</li>
+</ol>
+<h5 id="重视非技术性与社会因素"><a href="#重视非技术性与社会因素" class="headerlink" title="重视非技术性与社会因素"></a>重视非技术性与社会因素</h5><ol>
+<li><p>从需求处理的任务角度</p>
+<p>关注软件系统和现实之间的<em>互动效应</em></p>
+</li>
+<li><p>从需求处理的手段角度</p>
+<p>需求建模与分析不可能脱离具体的应用场景</p>
+</li>
+<li><p>从需求处理的过程来看</p>
+<p>在需求处理的过程中，在现实场景中涉众往往会存在利益冲突，这个单纯的通过技术无法解决</p>
+</li>
+</ol>
+<h4 id="需求工程"><a href="#需求工程" class="headerlink" title="需求工程"></a>需求工程</h4><h5 id="三个任务-p12"><a href="#三个任务-p12" class="headerlink" title="三个任务 p12"></a>三个任务 p12</h5><p>f</p>
+<h3 id="需求基础"><a href="#需求基础" class="headerlink" title="需求基础"></a>需求基础</h3><h4 id="需求定义"><a href="#需求定义" class="headerlink" title="需求定义"></a>需求定义</h4><p>IEEE：</p>
+<p>（1）用户为了解决问题或达到某些目标所需要的条件或能力</p>
+<p>（2）系统或系统部件为了满足合同标准、规范或其他正式文档所规定的要求而需要具备的条件和能力</p>
+<p>（3）对1/2的文档化描述    </p>
+<h4 id="基本概念区分"><a href="#基本概念区分" class="headerlink" title="基本概念区分"></a>基本概念区分</h4><p>关注问题：介于现实和期望之间</p>
+<h5 id="问题域：问题域是需求的背景"><a href="#问题域：问题域是需求的背景" class="headerlink" title="问题域：问题域是需求的背景"></a>问题域：问题域是需求的背景</h5><p>问题域的特点：问题域自治的规律性，包括结构特性和行为特性等</p>
+<p><strong>需额外关注的问题域特性：</strong></p>
+<p>间接特性（semi-automatic）产生自问题域的本身的内在规律性：技术可行性、用户选择自由（搜索引擎）</p>
+<p>约束和假设：社会性因素</p>
+<p><strong>问题域特性的重要性：</strong></p>
+<p>想要解决问题，就需要了解问题域特性，将解决方案与问题域特性结合起来</p>
+<p>要防止解系统的引入在问题域中引发连锁反应（例子：间接特性不直接与解系统交互而引发）</p>
+<p><strong>解系统：软件系统通过影响问题域，能够帮助人们解决问题称为解系统</strong></p>
+<p>是手段而不是目的</p>
+<h5 id="问题解决的基础：模拟与共享"><a href="#问题解决的基础：模拟与共享" class="headerlink" title="问题解决的基础：模拟与共享"></a>问题解决的基础：模拟与共享</h5><p>解系统和问题域间存在一定的共享现象</p>
+<p>解系统是对问题域中的某些部分的模拟</p>
+<h5 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h5><p>需求是用户对问题域当中的实体状态或事件的期望</p>
+<h5 id="需求规格说明（RS）"><a href="#需求规格说明（RS）" class="headerlink" title="需求规格说明（RS）"></a>需求规格说明（RS）</h5><p>是为了满足用户需求而提供的解决方案，规定了解系统的行为特征</p>
+<p>包括了两个部分：</p>
+<ol>
+<li>对共享现象的描述</li>
+<li>对系统对共享现象施加的操作的描述</li>
+</ol>
+<h5 id="问题的解决"><a href="#问题的解决" class="headerlink" title="问题的解决"></a>问题的解决</h5><p>需求（问题域端）</p>
+<p>需求规格说明（解系统端）</p>
+<h5 id="需求开发的困难性"><a href="#需求开发的困难性" class="headerlink" title="需求开发的困难性"></a>需求开发的困难性</h5><h4 id="需求的层次性"><a href="#需求的层次性" class="headerlink" title="需求的层次性"></a>需求的层次性</h4><p>业务需求（BR）-&gt; 系统特性（SF）Vision/Scope前景和范围</p>
+<p><strong>业务需求级别的抽象用例</strong></p>
+<p>用户需求</p>
+<p>用户任务具有目的性</p>
+<p>问题域知识作为背景支持</p>
+<p>特点：</p>
+<p>模糊不清晰-&gt;允许使用adj/adv</p>
+<p>多特性混杂：允许混合功能和非功能性需求<br>​<br>多逻辑混杂：可能需要多次系统交互才能完成</p>
+<p>系统需求：对一次交互的描述</p>
+<h4 id="需求类型"><a href="#需求类型" class="headerlink" title="需求类型"></a>需求类型</h4><p>项目需求：成本</p>
+<p>过程：开发方式…</p>
+<p>系统需求：软件需求、硬件需求</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">其他需求：人力、培训...</span><br></pre></td></tr></table></figure>
+
+<p>不切实际的期望</p>
+<h4 id="软件需求分类"><a href="#软件需求分类" class="headerlink" title="软件需求分类"></a>软件需求分类</h4><p>功能需求（必备，价值来源）</p>
+<p>性能需求（动态性的，需要专门模拟）</p>
+<p>质量属性（从设计的角度来思考，尤其是<strong>体系结构设计</strong>角度）</p>
+<p>对外接口（从封装和信息隐藏，以及多平台交互的角度）</p>
+<p>约束（行业规则、运行环境等）</p>
+<h5 id="质量属性的开发"><a href="#质量属性的开发" class="headerlink" title="质量属性的开发"></a>质量属性的开发</h5><p>用户并不能明确的提出他们对产品的质量期望（难以量化）</p>
+<p>质量需求往往和功能需求联系在一起，对照质量属性检查功能性需求（adj/adv的存在往往意味着质量属性）</p>
+<p>对于一些不合任何功能需求相联系的质量属性，需求工程师要在碰到特定的实例时才能意识到他的存在</p>
+<h4 id="优秀需求"><a href="#优秀需求" class="headerlink" title="优秀需求"></a>优秀需求</h4><h5 id="完备性"><a href="#完备性" class="headerlink" title="完备性"></a>完备性</h5><p>触发者/前后置条件</p>
+<h5 id="正确性"><a href="#正确性" class="headerlink" title="正确性"></a>正确性</h5><h5 id="可行性"><a href="#可行性" class="headerlink" title="可行性"></a>可行性</h5><h5 id="必要性"><a href="#必要性" class="headerlink" title="必要性"></a>必要性</h5><h5 id="无歧义"><a href="#无歧义" class="headerlink" title="无歧义"></a>无歧义</h5><h5 id="可验证"><a href="#可验证" class="headerlink" title="可验证"></a>可验证</h5><h3 id="需求工程活动"><a href="#需求工程活动" class="headerlink" title="需求工程活动"></a>需求工程活动</h3><h4 id="需求获取"><a href="#需求获取" class="headerlink" title="需求获取"></a>需求获取</h4><ol>
+<li><p>收集背景资料</p>
+<p>整合处理资料形成对问题域的一个基础知识框架，这是与用户进行业务沟通的基础</p>
+</li>
+<li><p>获取问题与目标，定义项目前景与范围</p>
+<p>明确高层次解决方案即业务需求，这也引导了不同立场的用户从共同的方向上来理解问题</p>
+<p>项目前景指导需求冲突</p>
+<p>还可以起到坚定客户投资信心的效果</p>
+</li>
+<li><p>识别涉众、选择信息来源（需求的来源）</p>
+<p>用户分类，为不同的类别选择代表（涉众分析）</p>
+<p>硬数据采样</p>
+<p>产品、文档、领域专家</p>
+</li>
+<li><p>选择获取方法、执行获取、获取功能性与非功能性需求</p>
+<p>针对每个获取的需求需要获取相关的问题域特性，这要求采取一定的方法和技巧</p>
+<p>如：面谈、调查表、原型</p>
+</li>
+</ol>
+<h4 id="需求分析"><a href="#需求分析" class="headerlink" title="需求分析"></a>需求分析</h4><ol>
+<li><p>背景分析</p>
+</li>
+<li><p>问题、目标、业务分析</p>
+<p>依据获取的问题、目标来确定系统边界</p>
+<p>系统边界要保证有效的互动</p>
+</li>
+<li><p>软件需求建模</p>
+<p>清晰有条理的整合信息</p>
+</li>
+<li><p>细化需求</p>
+<p>将一些模糊的用户需求转化为有良好粒度和特性的系统需求</p>
+</li>
+<li><p>确定优先级</p>
+</li>
+<li><p>协商需求</p>
+</li>
+</ol>
+<h4 id="需求规格说明"><a href="#需求规格说明" class="headerlink" title="需求规格说明"></a>需求规格说明</h4><ol>
+<li>定制文档模版</li>
+<li>编写文档</li>
+</ol>
+<h4 id="需求验证"><a href="#需求验证" class="headerlink" title="需求验证"></a>需求验证</h4><ol>
+<li>执行验证</li>
+<li>问题修正</li>
+</ol>
+<h4 id="需求管理"><a href="#需求管理" class="headerlink" title="需求管理"></a>需求管理</h4><ol>
+<li><p>建立和维护需求基线集</p>
+<p>版本控制</p>
+</li>
+<li><p>建立需求跟踪信息</p>
+<p>建立需求在项目中的可跟踪性</p>
+<p>以系统级需求为出发点进行双向跟踪：</p>
+<p>后向跟踪：跟踪系统级需求被设计实现为那些制品、并回溯这些制品是为哪些需求存在的</p>
+<p>前向跟踪：跟踪一个系统需求是为了支撑哪些用户需求存在的，并跟踪这些用户需求是怎么转化为系统级需求的</p>
+</li>
+<li><p>进行变更控制</p>
+</li>
+</ol>
+<h3 id="确定项目前景和范围"><a href="#确定项目前景和范围" class="headerlink" title="确定项目前景和范围"></a>确定项目前景和范围</h3><p>定义业务需求和能够满足需求的高层解决方案</p>
+<p>确认问题、目标、特性</p>
+<p>问题：组织的战略目标、利益分配、政策规划、业务流程等</p>
+<p>目标：问题的反面</p>
+<h3 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h3><h4 id="获取问题"><a href="#获取问题" class="headerlink" title="获取问题"></a>获取问题</h4><p>背景资料（数据！业务描述）、涉众沟通</p>
+<h4 id="明确问题"><a href="#明确问题" class="headerlink" title="明确问题"></a>明确问题</h4><p>对问题产生共识（在涉众之间取得认同）</p>
+<p>判断问题的明确性、分析不明确的问题（易于理解、能指明解决方向）</p>
+<p>发现问题背后的问题</p>
+<h4 id="发现业务需求"><a href="#发现业务需求" class="headerlink" title="发现业务需求"></a>发现业务需求</h4><h3 id="涉众分析与硬数据采样"><a href="#涉众分析与硬数据采样" class="headerlink" title="涉众分析与硬数据采样"></a>涉众分析与硬数据采样</h3><p><em>管理学对涉众的定义：所有能够影响组织目标实现或者被组织的目标实现所影响的个人或团体</em></p>
+<p>[Athanasia 1997]按照信息系统的复杂程度，将信息系统氛围四类：</p>
+<ol>
+<li>小型系统</li>
+<li>组织级系统</li>
+<li>战略信息系统</li>
+<li>组织间系统</li>
+</ol>
+<h4 id="涉众分析过程"><a href="#涉众分析过程" class="headerlink" title="涉众分析过程"></a>涉众分析过程</h4><h5 id="涉众识别"><a href="#涉众识别" class="headerlink" title="涉众识别"></a>涉众识别</h5><p>涉众识别的方法：</p>
+<ol>
+<li><p>先膨胀后收缩</p>
+</li>
+<li><p>检查列表法</p>
+</li>
+<li><p>涉众网络方法</p>
+<p>所有涉众群体的互动形成一个网络，每个涉众是一个节点， 如果两个类别存在互动就是一条边</p>
+<p>涉众网络是一个连通图</p>
+<p>从涉众网络的任意一点出发进行遍历，可以找到所有节点</p>
+<p>步骤：</p>
+<ol>
+<li>寻找最容易识别的初始涉众，形成<strong>涉众基线</strong></li>
+<li>通过初试涉众进行头脑风暴，列出一个涉众类别列表</li>
+<li>通过分析涉众列表内涉众和软件的交互以及他们之间的交互，将2中的列表缩减</li>
+<li>为3的各个关键涉众类别选择代表</li>
+</ol>
+</li>
+</ol>
+<h5 id="涉众描述"><a href="#涉众描述" class="headerlink" title="涉众描述"></a>涉众描述</h5><p>描述个人特征和工作特征</p>
+<p>对项目的关注点和兴趣</p>
+<p>对项目的期望、<em>成为项目赢家的条件</em></p>
+<p>可能受到项目的影响以及程度</p>
+<p>对项目施加的影响以及程度</p>
+<h5 id="涉众评估"><a href="#涉众评估" class="headerlink" title="涉众评估"></a>涉众评估</h5><ol>
+<li><p>优先级评估</p>
+<p>Power/Interest分布图</p>
+</li>
+<li><p>风险评估</p>
+<p>Power/Attitude分布图</p>
+<p>化解涉众风险的策略图</p>
+</li>
+<li><p>共赢分析</p>
+<p>Standholder/Issue 关系图</p>
+</li>
+</ol>
+<h5 id="涉众代表选择"><a href="#涉众代表选择" class="headerlink" title="涉众代表选择"></a>涉众代表选择</h5><h5 id="涉众参与策略制定"><a href="#涉众参与策略制定" class="headerlink" title="涉众参与策略制定"></a>涉众参与策略制定</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">涉众参与矩阵</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h4 id="硬数据采样"><a href="#硬数据采样" class="headerlink" title="硬数据采样"></a>硬数据采样</h4><h5 id="定量硬数据"><a href="#定量硬数据" class="headerlink" title="定量硬数据"></a>定量硬数据</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">数据收集表格</span><br><span class="line"></span><br><span class="line">统计报表</span><br></pre></td></tr></table></figure>
+
+<h5 id="定性硬数据"><a href="#定性硬数据" class="headerlink" title="定性硬数据"></a>定性硬数据</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">组织描述文档</span><br><span class="line"></span><br><span class="line">业务指导文档</span><br><span class="line"></span><br><span class="line">业务备忘</span><br></pre></td></tr></table></figure>
+
+<h5 id="Sample-Size"><a href="#Sample-Size" class="headerlink" title="Sample Size"></a>Sample Size</h5><p>SS = p * (1-p) * ( 确定性因子/可接受性错误)^2</p>
+<p>p是样本差异比例</p>
+<p>确定性因子根据期望查表</p>
+<p>可接受性错误是期望的补</p>
+<h3 id="基于用例场景模型展开用户需求获取"><a href="#基于用例场景模型展开用户需求获取" class="headerlink" title="基于用例场景模型展开用户需求获取"></a>基于用例场景模型展开用户需求获取</h3><h4 id="用户需求获取活动的展开"><a href="#用户需求获取活动的展开" class="headerlink" title="用户需求获取活动的展开"></a>用户需求获取活动的展开</h4><h5 id="从需求的层次性来看："><a href="#从需求的层次性来看：" class="headerlink" title="从需求的层次性来看："></a>从需求的层次性来看：</h5><p>业务需求</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">关键词：目标</span><br><span class="line"></span><br><span class="line">目的：定义解决方案和系统特性</span><br><span class="line"></span><br><span class="line">方法：目标分析...</span><br></pre></td></tr></table></figure>
+
+<p>用户需求</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">关键词：任务</span><br><span class="line"></span><br><span class="line">方法：从问题域出发，场景&#x2F;用例分析</span><br></pre></td></tr></table></figure>
+
+<p>系统需求</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">关键词：系统行为</span><br><span class="line"></span><br><span class="line">方法：OO分析&#x2F;结构化分析</span><br></pre></td></tr></table></figure>
+
+<h5 id="注意事项："><a href="#注意事项：" class="headerlink" title="注意事项："></a>注意事项：</h5><ol>
+<li>要保持项目范围，不能有需求遗漏</li>
+<li>多轮次迭代获取</li>
+<li>关注获取方法</li>
+<li>及时组织已经获取的需求以指导后续获取</li>
+</ol>
+<h5 id="多轮次获取要点："><a href="#多轮次获取要点：" class="headerlink" title="多轮次获取要点："></a>多轮次获取要点：</h5><h6 id="前景与范围阶段"><a href="#前景与范围阶段" class="headerlink" title="前景与范围阶段"></a>前景与范围阶段</h6><p>准备：背景资料的获取与分析</p>
+<p>第一轮：问题分析</p>
+<p>第二轮：定义高层次解决方案</p>
+<h6 id="用户需求获取阶段"><a href="#用户需求获取阶段" class="headerlink" title="用户需求获取阶段"></a>用户需求获取阶段</h6><p>准备：明确主题与内容，准备材料</p>
+<p>第一轮：明确任务和任务中的主要问题（深入）</p>
+<p>第二轮：明确任务细节，澄清困难内容（技巧、困难）</p>
+<p>第三轮：明确解决方案</p>
+<h5 id="获取方法"><a href="#获取方法" class="headerlink" title="获取方法"></a>获取方法</h5><p>面谈</p>
+<p>原型</p>
+<p>观察</p>
+<h5 id="用户需求的组织"><a href="#用户需求的组织" class="headerlink" title="用户需求的组织"></a>用户需求的组织</h5><p>模型驱动方法（场景/用例模型）</p>
+<p>承上启下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">展开业务需求</span><br><span class="line"></span><br><span class="line">准备系统需求的展开</span><br></pre></td></tr></table></figure>
+
+<h4 id="场景-用例"><a href="#场景-用例" class="headerlink" title="场景/用例"></a>场景/用例</h4><h5 id="基本概念："><a href="#基本概念：" class="headerlink" title="基本概念："></a>基本概念：</h5><p>场景：具有重点描述真实世界的特征，它利用<strong>情景、行为者</strong>之间的<strong>交互</strong>、事件随<strong>时间的演化</strong>等方式来叙述性的描述系统的使用 </p>
+<p>用例：相关场景集合的叙述性描述</p>
+<p>是系统与外部对象交互的行为序列，联合提供一种<strong>有价值的服务</strong></p>
+<h5 id="组织特点"><a href="#组织特点" class="headerlink" title="组织特点"></a>组织特点</h5><p>将分散的需求列表组织为storyLine，这不仅将需求组织为涉众易于理解的故事，而且其内聚性还有助于需求工程师执行获取、分析和验证的任务。</p>
+<p>不受开发者喜欢！！</p>
+<p>场景用例模型还可以以功能为中心，将涉众及其目标，问题域只是（业务规则等）， 质量需求，对外接口，假设与依赖等众多相关内容也组织到一起！</p>
+<h5 id="层次性"><a href="#层次性" class="headerlink" title="层次性"></a>层次性</h5><p>与需求本身的层次性相关</p>
+<h4 id="场景-用例模型"><a href="#场景-用例模型" class="headerlink" title="场景/用例模型"></a>场景/用例模型</h4><h4 id="基于用例场景模型展开需求获取"><a href="#基于用例场景模型展开需求获取" class="headerlink" title="基于用例场景模型展开需求获取"></a>基于用例场景模型展开需求获取</h4><ol>
+<li>建立初始用例场景模型</li>
+<li>初始用例</li>
+<li>展开用例<ol>
+<li>组织获取的内容</li>
+</ol>
+</li>
+</ol>
+<h3 id="需求获取方法之面谈"><a href="#需求获取方法之面谈" class="headerlink" title="需求获取方法之面谈"></a>需求获取方法之面谈</h3><p>面谈可以获取的信息有：</p>
+<p>事实和问题</p>
+<p>被会见者的观点</p>
+<p>被会见者的感受</p>
+<p>组织和个人的目标</p>
+<p>过程：</p>
+<p>前景和范围的指导–准备面谈–主持面谈整理面谈报告–面谈报告</p>
+<h4 id="面谈问题的类型"><a href="#面谈问题的类型" class="headerlink" title="面谈问题的类型"></a>面谈问题的类型</h4><h5 id="开放式问题"><a href="#开放式问题" class="headerlink" title="开放式问题"></a>开放式问题</h5><p>被会见者对答复的选择可以是开放和不受限制的，他们可能答复两个词，也可能答复两段话</p>
+<p>在希望得到具有一定深度和广度的信息时可以采取开放式问题</p>
+<p>开放式问题的优缺点：</p>
+<p>让被会见者感到自在</p>
+<p>会见者可以收集被会见者使用的词汇，这能反应他的教育、价值标准、态度和信念</p>
+<p>能提供丰富的细节</p>
+<p>对没采用的进一步提问有启迪作用</p>
+<p>让那个被会见者更感兴趣</p>
+<p>容许更多的自发性</p>
+<p>会见者可以在没有太多准备的情况下进行面谈</p>
+<p>缺点：</p>
+<p>会产生一些不相关的细节</p>
+<p>面谈可能会失控</p>
+<p>会花费大量的时间才能获取到有用的信息</p>
+<p>可能会使会见者看上去没有准备</p>
+<h5 id="封闭式问题"><a href="#封闭式问题" class="headerlink" title="封闭式问题"></a>封闭式问题</h5><p>答案有基本的形式，被会见者的回答受到限制</p>
+<p>优点：</p>
+<p>可省时间</p>
+<p>切中要点</p>
+<p>保持对面谈的控制</p>
+<p>快速讨论大范围的问题</p>
+<p>得到贴切的数据</p>
+<p>缺点：</p>
+<p>会使被会见者厌烦</p>
+<p>得不到丰富的细节</p>
+<p>不能建立友好的关系</p>
+<h5 id="程序性提示"><a href="#程序性提示" class="headerlink" title="程序性提示"></a>程序性提示</h5><p>总结和反馈</p>
+<p>重复和改述</p>
+<p>建立场景和细节描述</p>
+<p>抗辩</p>
+<h5 id="探究式问题"><a href="#探究式问题" class="headerlink" title="探究式问题"></a>探究式问题</h5><p>​    为什么</p>
+<p>​    能举个例子吗</p>
+<p>​    能详细描述一下吗？</p>
+<h5 id="诱导性问题（NO）"><a href="#诱导性问题（NO）" class="headerlink" title="诱导性问题（NO）"></a>诱导性问题（NO）</h5><h5 id="双筒问题（要求对两个问题的回复）"><a href="#双筒问题（要求对两个问题的回复）" class="headerlink" title="双筒问题（要求对两个问题的回复）"></a>双筒问题（要求对两个问题的回复）</h5><h5 id="元问题（和问题域不相关的问题）"><a href="#元问题（和问题域不相关的问题）" class="headerlink" title="元问题（和问题域不相关的问题）"></a>元问题（和问题域不相关的问题）</h5><p>我的问题看起来相关吗？</p>
+<p>你的回答正式吗？</p>
+<p>我还需要会见哪些人？</p>
+<h4 id="问题的准备注意事项"><a href="#问题的准备注意事项" class="headerlink" title="问题的准备注意事项"></a>问题的准备注意事项</h4><h5 id="前期"><a href="#前期" class="headerlink" title="前期"></a>前期</h5><p>开放式问题为主</p>
+<p>决策层与专家为主</p>
+<p>遵循问题-目标-解决方案的路线</p>
+<p>分析基本涉众的特点：角色、特点、个人目标、频率、优先级</p>
+<h5 id="后期"><a href="#后期" class="headerlink" title="后期"></a>后期</h5><p>封闭式问题为主</p>
+<p>抓住主题与线索</p>
+<p>​    例如：任务分解、流程图、界面示意</p>
+<p>问题要有针对性（针对具体场景、任务的分解、数据等等）</p>
+<p>事先准备面谈记录材料</p>
+<h4 id="主持面谈"><a href="#主持面谈" class="headerlink" title="主持面谈"></a>主持面谈</h4><h4 id="处理面谈结果"><a href="#处理面谈结果" class="headerlink" title="处理面谈结果"></a>处理面谈结果</h4><p>复查面谈记录：整理出面谈要点，进行分类</p>
+<p>总结面谈信息：评估面谈中所得到的信息</p>
+<p>完成面谈报告</p>
+<h4 id="面谈的类型"><a href="#面谈的类型" class="headerlink" title="面谈的类型"></a>面谈的类型</h4><h5 id="结构化面谈"><a href="#结构化面谈" class="headerlink" title="结构化面谈"></a>结构化面谈</h5><p>​    安全的按照事先的问题和结构来控制面谈</p>
+<h5 id="半结构化面谈"><a href="#半结构化面谈" class="headerlink" title="半结构化面谈"></a>半结构化面谈</h5><p>​    事先根据面谈的内容准备面谈的问题和面谈建构，但是在面谈的过程中，会见者可以根据实际情况采取一些灵活策略</p>
+<h5 id="非结构化面谈"><a href="#非结构化面谈" class="headerlink" title="非结构化面谈"></a>非结构化面谈</h5><p>​    没有实现预定的议程安排</p>
+<p>​    甚至会在没有太多事前准备的情况下就直接到被会见者的工作地，就某个主题展开会谈</p>
+<p>​    话题广泛但不深入</p>
+<p>​    也有可能在非结构化面谈中对某个问题进行深入讨论</p>
+<h4 id="面谈的优点"><a href="#面谈的优点" class="headerlink" title="面谈的优点"></a>面谈的优点</h4><p>开展条件简单，经济成本低</p>
+<p>能获得广泛的内容</p>
+<p>能建立友好的关系</p>
+<p>能提高被会见者的参与度</p>
+<h4 id="面谈的缺点"><a href="#面谈的缺点" class="headerlink" title="面谈的缺点"></a>面谈的缺点</h4><p>时间成本高</p>
+<p>地理局限性</p>
+<p>对任教交流能力的依赖较大</p>
+<p>常见的概念结构不同、模糊化表述、默认认知、潜在的事实和态度偏见不可避免，进而会影响面谈的结果</p>
+<h4 id="相关方法"><a href="#相关方法" class="headerlink" title="相关方法"></a>相关方法</h4><p>群体面谈</p>
+<p>头脑风暴</p>
+<p>调查问卷</p>
+<p>​    </p>
+<h3 id="需求获取方法之原型"><a href="#需求获取方法之原型" class="headerlink" title="需求获取方法之原型"></a>需求获取方法之原型</h3><h4 id="什么是原型"><a href="#什么是原型" class="headerlink" title="什么是原型"></a>什么是原型</h4><p>原型是一个系统，他内化了一个更迟的系统的<em>本质特征</em>。原型系统通常被构造成不完整的系统，以在将来改进补充或替代。</p>
+<p>如果在最终物件产生之前，一个中间物件被用来在一定的广度和深度范围内表现这个最终物件，那么这个中间物件就被认为是最终物件在该深度和广度上的原型。</p>
+<p>原型包括：</p>
+<p>书面绘画、场景描述、情节串联图版、ppt、动画模拟、屏幕快照和程序代码在哪的各种被用来探索和论证软件系统功能的物件。</p>
+<h4 id="为什么使用原型"><a href="#为什么使用原型" class="headerlink" title="为什么使用原型"></a>为什么使用原型</h4><h5 id="不确定性"><a href="#不确定性" class="headerlink" title="不确定性"></a>不确定性</h5><p>因为对未来知识的有限，而无法确定某种决策结果</p>
+<h5 id="不确定性是广泛存在的"><a href="#不确定性是广泛存在的" class="headerlink" title="不确定性是广泛存在的"></a>不确定性是广泛存在的</h5><p>科学的目标是限定、解释不确定性，不是将不确定性转化为确定性</p>
+<p>人们厌恶不确定性，不确定性意味着不完全可控</p>
+<h5 id="软件工程中的不确定性"><a href="#软件工程中的不确定性" class="headerlink" title="软件工程中的不确定性"></a>软件工程中的不确定性</h5><p>需求的不确定性</p>
+<p>设计的不确定性</p>
+<p>构造的不确定性</p>
+<p>测试的不确定性</p>
+<p>管理的不确定性</p>
+<h4 id="软件工程中的原型"><a href="#软件工程中的原型" class="headerlink" title="软件工程中的原型"></a>软件工程中的原型</h4><h5 id="演示原型（presentation-prototype）"><a href="#演示原型（presentation-prototype）" class="headerlink" title="演示原型（presentation prototype）"></a>演示原型（presentation prototype）</h5><p>主要被用在项目启动阶段</p>
+<p>目的是让用户相信应用系统的开发是可行的</p>
+<h5 id="严格意义上的原型（prototype-proper）"><a href="#严格意义上的原型（prototype-proper）" class="headerlink" title="严格意义上的原型（prototype proper）"></a>严格意义上的原型（prototype proper）</h5><p>主要被用在需求分析阶段</p>
+<p>主要用来阐释用户界面或者系统功能的某些特定方面</p>
+<h5 id="试验原型（breadboard-prototype）"><a href="#试验原型（breadboard-prototype）" class="headerlink" title="试验原型（breadboard prototype）"></a>试验原型（breadboard prototype）</h5><p>主要用在构建系统阶段（技术细节/算法细节）</p>
+<p>帮助开发者澄清他们多面对的一些和系统构建相关的技术问题</p>
+<h5 id="引示系统原型（pilot-system-prototype）–体系结构原型"><a href="#引示系统原型（pilot-system-prototype）–体系结构原型" class="headerlink" title="引示系统原型（pilot system prototype）–体系结构原型"></a>引示系统原型（pilot system prototype）–体系结构原型</h5><p>会被用在系统开发的各个阶段</p>
+<p>用作最终系统构建的核心</p>
+<h4 id="需求工程为什么要使用原型"><a href="#需求工程为什么要使用原型" class="headerlink" title="需求工程为什么要使用原型"></a>需求工程为什么要使用原型</h4><p>帮助需求工程师急躁解决需求的不确定性</p>
+<h4 id="原型方法过程"><a href="#原型方法过程" class="headerlink" title="原型方法过程"></a>原型方法过程</h4><h5 id="确定原型需求"><a href="#确定原型需求" class="headerlink" title="确定原型需求"></a>确定原型需求</h5><p>界定不确定性：可能发生的需求变更、存在冲突的地方、信息不充分的地方</p>
+<p>明确不确定的维度：外观（具体的感觉体验）、角色（原型的角色）、实现（技术细节）</p>
+<h5 id="原型开发"><a href="#原型开发" class="headerlink" title="原型开发"></a>原型开发</h5><p>将探索不确定功能需求的原型构建的抑郁修改</p>
+<p>让那个探索可行性的原型手机充分的证据</p>
+<p>控制开发成本</p>
+<h5 id="原型评估"><a href="#原型评估" class="headerlink" title="原型评估"></a>原型评估</h5><p>需要获取的评估者反馈：评估者的反应、评估者的建议、创新思维</p>
+<p>可以创建一些脚本来指导评估者的体验活动</p>
+<p>务必要让合适的人从恰当的角度来评估原型</p>
+<p>创造一个无偏见的环境，让评估人员畅所欲言</p>
+<h5 id="原型修正"><a href="#原型修正" class="headerlink" title="原型修正"></a>原型修正</h5><p>一方面要一句评估人员的反馈</p>
+<p>另一方面也要考虑实现的原型调整计划</p>
+<p><strong>原型一定要开发的 容易修改！！</strong></p>
+<h4 id="原型法的使用要点"><a href="#原型法的使用要点" class="headerlink" title="原型法的使用要点"></a>原型法的使用要点</h4><h4 id="坚决抛弃-抛弃式原型"><a href="#坚决抛弃-抛弃式原型" class="headerlink" title="坚决抛弃 抛弃式原型"></a>坚决抛弃 抛弃式原型</h4><p>探索式（exploratory）</p>
+<p>以缺陷需求开始继而不断调整和修正需求的原型</p>
+<p>要尽可能调整各种设计选项–探索需求</p>
+<p>实验式（experimental）</p>
+<p>以清晰的用户需求和模糊的实现方法、实现效果、可行性开始，明确需求的可行的技术实现方案–试验可行性</p>
+<p>定义一个对原型评估的方法，确定评估属性</p>
+<p>演化使式（evolutionary）</p>
+<p>以清晰的原型化需求和项目及类型下来的原型资产为开始</p>
+<p>原型化的需求，也有项目积累下来的原型资产</p>
+<h5 id="探索式和实验式的方法产生的原型又被称为抛弃式原型"><a href="#探索式和实验式的方法产生的原型又被称为抛弃式原型" class="headerlink" title="探索式和实验式的方法产生的原型又被称为抛弃式原型"></a>探索式和实验式的方法产生的原型又被称为抛弃式原型</h5><p>花费最小的代价，争取最快的速度</p>
+<p>可能会使用简易的开发工具和不成熟的构造技术</p>
+<p>可能会忽略个简化处理原型目的不相关的功能特征</p>
+<p>要坚决抛弃</p>
+<h5 id="演化式原型方法产生的原型成为演化式原型"><a href="#演化式原型方法产生的原型成为演化式原型" class="headerlink" title="演化式原型方法产生的原型成为演化式原型"></a>演化式原型方法产生的原型成为演化式原型</h5><p>质量草一开始就能达到最终系统的要求</p>
+<p>要易于扩展金额改进，因此必须重视演化式原型的设计</p>
+<p>仅应用于处理清晰的需求、规格说明和技术方案</p>
+<p>​    因为基于不确定的需求基础，所以抛弃式原型难免反复修改，导致代码质量较低，应该坚决抛弃</p>
+<p>​    抛弃式原型的贡献不在于它的代码，而是它所包含的内容，它说明了正确的需求和正确的技术方案，如果认识不到这一点，他们就只能得到低质量的代码，而丢失真正宝贵的内容</p>
+<h4 id="控制原型开发成本"><a href="#控制原型开发成本" class="headerlink" title="控制原型开发成本"></a>控制原型开发成本</h4><blockquote>
+<p>“不要过于详细地构建抛弃式原型，只要它能够满足原型制作的目标就足够了。要抵制住诱惑，也要顶住用户的压力，不要向抛弃式原型添加更多的功能。”[Wiegers2003]</p>
+</blockquote>
+<h5 id="水平原型方法（horizontal-prototyping）"><a href="#水平原型方法（horizontal-prototyping）" class="headerlink" title="水平原型方法（horizontal prototyping）"></a>水平原型方法（horizontal prototyping）</h5><p>它仅仅实现选定功能所有层次中的某些特定层次</p>
+<p>要把注意力集中在<strong>概括性需求和工作流</strong>问题上</p>
+<h5 id="垂直原型方法（vertical-prototyping）"><a href="#垂直原型方法（vertical-prototyping）" class="headerlink" title="垂直原型方法（vertical prototyping）"></a>垂直原型方法（vertical prototyping）</h5><p>它会触及到选定功能的所有层次</p>
+<p>保证正式实现它的所有功能</p>
+<p><strong>用尽可能低的成本开发水平原型</strong></p>
+<h4 id="控制原型法的风险"><a href="#控制原型法的风险" class="headerlink" title="控制原型法的风险"></a>控制原型法的风险</h4><h5 id="原型法的风险"><a href="#原型法的风险" class="headerlink" title="原型法的风险"></a>原型法的风险</h5><p>成本</p>
+<p>让涉众产生产品已经完成的误会，从而提出不当的要求</p>
+<p>用户可能胡被原型所表现出的非功能特性遮蔽了眼睛，从而忽视了他们更该重视的功能特性</p>
+<p>在澄清不确定性的同时也会掩盖一些用户假设，这些假设将会无从发现</p>
+<h3 id="需求获取方法之原型-1"><a href="#需求获取方法之原型-1" class="headerlink" title="需求获取方法之原型"></a>需求获取方法之原型</h3><h4 id="观察的情景适用性"><a href="#观察的情景适用性" class="headerlink" title="观察的情景适用性"></a>观察的情景适用性</h4><p>应用于用户无法完成主动的信息告知的情况下</p>
+<p>采样观察（Sampling Observation）</p>
+<p>民族志（Ethnography）</p>
+<p>话语分析（Discourse Analyse）</p>
+<p>协议分析（Protocol Analyse）</p>
+<p>任务分析（Task Analyse）</p>
+<h5 id="事件情景性"><a href="#事件情景性" class="headerlink" title="事件情景性"></a>事件情景性</h5><p>某些事情只有和他们发生时的具体环境联系起来，才能得到理解</p>
+<h5 id="观察方法解决的问题"><a href="#观察方法解决的问题" class="headerlink" title="观察方法解决的问题"></a>观察方法解决的问题</h5><p>理解复杂的协同事件</p>
+<p>​    凸现、民族志</p>
+<p>获取工作中的异常处理</p>
+<p>​    局部、采样观察、民族志</p>
+<p>获取与用户认知不一致的实际知识</p>
+<p>​    暂时、采样观察、民族志</p>
+<p>了解用户认知</p>
+<p>​    涉身、民族志、话语分析</p>
+<p>获取默认知识</p>
+<p>​    模糊、采样观察、民族志、协议分析</p>
+<h4 id="观察方法的应用"><a href="#观察方法的应用" class="headerlink" title="观察方法的应用"></a>观察方法的应用</h4><h5 id="采样观察"><a href="#采样观察" class="headerlink" title="采样观察"></a>采样观察</h5><p>时间采样（优缺点）–发现异常流程</p>
+<p>事件采样（优缺点）–获取默认认知</p>
+<h5 id="民族志"><a href="#民族志" class="headerlink" title="民族志"></a>民族志</h5><p>优点</p>
+<p>能够得到信息的深度理解</p>
+<p>能够让真实世界的社会性因素可见化</p>
+<p>打破人们已有的一些错误假设和错误观念</p>
+<p>缺点</p>
+<p>时间成本</p>
+<p>调研结果很难传递到开发过程</p>
+<h6 id="针对复杂协同问题的民族志"><a href="#针对复杂协同问题的民族志" class="headerlink" title="针对复杂协同问题的民族志"></a>针对复杂协同问题的民族志</h6><p>关注三个方面</p>
+<ol>
+<li><p>工作的分布式协同</p>
+<p>要特别注意哪些利用物件实现的协同和创建这些物件的文书工作</p>
+</li>
+<li><p>工作的计划和程序</p>
+<p>关注它们在组织活动中日应用形式</p>
+<p>发现实际工作和文档化程序的偏差</p>
+</li>
+<li><p>工作意识</p>
+<p>活动是如何对协同中的其他人可见或可理解的</p>
+</li>
+</ol>
+<h6 id="适用于普通民族志的规则"><a href="#适用于普通民族志的规则" class="headerlink" title="适用于普通民族志的规则"></a>适用于普通民族志的规则</h6><p>应该定期的记录发现</p>
+<p>尽快的记录可能会在观察过程中发生的面谈</p>
+<p>定期复查和更新自己的想法</p>
+<p>确定管理海量数据的应对策略</p>
+<h3 id="文档审查方法"><a href="#文档审查方法" class="headerlink" title="文档审查方法"></a>文档审查方法</h3><p>可审查的文档类型</p>
+<ol>
+<li>相关产品的需求规格说明（需求重用）</li>
+<li>硬数据（文档分析—得到问题域信息、工作流程、业务细节）</li>
+<li>客户需求文档（需求剥离–获得粗粒度需求）</li>
+</ol>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Fortune</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://njussj.github.io/2020/05/18/%E9%9C%80%E6%B1%82%E5%B7%A5%E7%A8%8B/">http://njussj.github.io/2020/05/18/%E9%9C%80%E6%B1%82%E5%B7%A5%E7%A8%8B/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E9%9C%80%E6%B1%82%E5%B7%A5%E7%A8%8B/"># 需求工程</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2020/05/18/%E7%BB%93%E7%BD%91/">结网</a>
+            
+            
+            <a class="next" rel="next" href="/2020/05/18/%E8%BD%AF%E4%BB%B6%E6%9E%84%E9%80%A0/">软件构造</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Fortune | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

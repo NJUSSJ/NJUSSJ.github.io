@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Fortune">
+
+
+
+
+
+<title>软件构造 | Fortune Blog</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Fortune&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Fortune&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">软件构造</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Fortune</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">May 18, 2020&nbsp;&nbsp;17:31:09</a>
+                        </span>
+                    
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h3 id="导论"><a href="#导论" class="headerlink" title="导论"></a>导论</h3><p>首要技术使命：管理复杂度</p>
+<p>构造前期工作的目标（复查性工作）：降低风险</p>
+<p>辨明软件项目的类型：<br>商业系统（高度迭代）</p>
+<p>使命攸关</p>
+<p>性命攸关（序列式）</p>
+<p><strong>软件构造：编码、调试、一部分的详细设计和单元测试</strong></p>
+<h3 id="类设计的第一步：类的接口设计"><a href="#类设计的第一步：类的接口设计" class="headerlink" title="类设计的第一步：类的接口设计"></a>类设计的第一步：类的接口设计</h3><h4 id="要对外展示一致的抽象层次"><a href="#要对外展示一致的抽象层次" class="headerlink" title="要对外展示一致的抽象层次"></a>要对外展示一致的抽象层次</h4><ol>
+<li><strong>一个类应该实现并仅实现是个ADT</strong></li>
+<li><strong>当实现了多个ADT时，可以考虑重新组织类</strong></li>
+<li><strong>抽象层次要到应用层次、到数据结构层次不够（不能混合）</strong></li>
+<li>理解类接口应该捕获的抽象到底是哪一个</li>
+<li>提供成对的服务：不要盲目创建相反操作（getter/setter）</li>
+<li>把不相关的信息转移到其他类<ol>
+<li>思考子程序和数据之间的引用关系</li>
+</ol>
+</li>
+<li>让接口可编程，而不是表达语义<ol>
+<li>可编程部分：编译器可检查，接口数据类型、属性类型</li>
+<li>语义部分：编译器不可检查，接口怎样被使用</li>
+</ol>
+</li>
+<li>不要添加与接口抽象不一致的公用成员</li>
+<li>同时考虑抽象性和内聚性</li>
+</ol>
+<h4 id="好的封装，不要暴露自身数据结构和实现细节"><a href="#好的封装，不要暴露自身数据结构和实现细节" class="headerlink" title="好的封装，不要暴露自身数据结构和实现细节"></a>好的封装，不要暴露自身数据结构和实现细节</h4><ol>
+<li>尽可能限制类和成员的可访问性<ol>
+<li>最严格的访问级别</li>
+<li>保护接口抽象的完整性</li>
+</ol>
+</li>
+<li>不要公开暴露成员数据</li>
+<li>不要对类的使用者做任何假设</li>
+<li>no友元类</li>
+<li>不要因为一个子程序只使用公用子程序就把它纳入公开接口-始终保持抽象一致</li>
+<li>警惕从语义上破坏封装性</li>
+</ol>
+<p>解决方案：针对接口编程</p>
+<h4 id="留意过于紧密的耦合"><a href="#留意过于紧密的耦合" class="headerlink" title="留意过于紧密的耦合"></a>留意过于紧密的耦合</h4><ol>
+<li>尽可能限制访问权限</li>
+<li>避免友元</li>
+<li>避免在公开的接口中暴露成员数据结构</li>
+<li>警觉迪米特法则</li>
+</ol>
+<h3 id="Design-amp-Implementation"><a href="#Design-amp-Implementation" class="headerlink" title="Design &amp; Implementation"></a>Design &amp; Implementation</h3><h4 id="包含"><a href="#包含" class="headerlink" title="包含"></a>包含</h4><p>面向对象设计的<strong>主力技术</strong></p>
+<p>实现has a 关系</p>
+<p>警惕超过七个数据成员的类</p>
+<h4 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h4><p>表示一个类是另外一个类的特例</p>
+<p>目的是写出更精简的代码</p>
+<p>用public继承实现<em>是一个</em>的关系 — 基类对派生类将做什么设定了预期</p>
+<p>对不可继承的类明确禁止</p>
+<p>遵循里氏替换原则 — 基类中的所有子程序，用在他的派生类中拥有相同的语义，子类能够替换基类完成相同的语义，子类方法的前置条件更松，后置条件更严</p>
+<p>只继承需要继承的部分 – 如果仅使用实现而不是接口则考虑使用包含</p>
+<p>不要覆盖不可覆盖的成员函数</p>
+<p>把公用的内容放在继承🌲尽可能高的地方</p>
+<p>以下情况值得怀疑：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">只有一个实例的类，**只有一个派生类的基类（不要为未来做设计）**</span><br><span class="line"></span><br><span class="line">覆盖了基类的子程序却什么都不做</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h4><p>尽可能在所有构造函数中初始化所有数据成员</p>
+<p>优先采用深拷贝</p>
+<p>单件属性的实现： private构造函数</p>
+<h4 id="应该避免的类"><a href="#应该避免的类" class="headerlink" title="应该避免的类"></a>应该避免的类</h4><p>万能类</p>
+<p>无关紧要的类：只包含数据没有行为</p>
+<p>用动词命名的类：只有行为没有数据</p>
+<h3 id="子程序设计"><a href="#子程序设计" class="headerlink" title="子程序设计"></a>子程序设计</h3><h4 id="为什么创建子程序"><a href="#为什么创建子程序" class="headerlink" title="为什么创建子程序"></a>为什么创建子程序</h4><p>避免代码重复</p>
+<p>支持子类化</p>
+<p>隐藏顺序</p>
+<p>隐藏指针操作</p>
+<p>提高可移植性</p>
+<p>简化复杂的布尔判断</p>
+<p>改善性能</p>
+<h3 id="防御式编程"><a href="#防御式编程" class="headerlink" title="防御式编程"></a>防御式编程</h3><p>主要思想：子程序不因传入错误的数据而被破坏，哪怕是由其他子程序产生的错误数据</p>
+<p>换句话说就是要承认程序都会有问题。</p>
+<p>区别于检查错误–防御式编程并不能排除所有错误</p>
+<p>区别于调试–是一种防卫方式而不是补救方式</p>
+<p>区别于测试–测试不是防御式的，用来验证代码是否错误</p>
+<h3 id="断言Assertions"><a href="#断言Assertions" class="headerlink" title="断言Assertions"></a>断言Assertions</h3><p>定义：</p>
+<p>在开发期间使用的让程序在运行时进行自检的代码</p>
+<p>–是对开发人员的警告</p>
+<p>–通常是一个子程序或者是宏</p>
+<p>–断言为真，表示程序运行正常；为假表示代码出现了<strong>意料之外</strong>的错误</p>
+<p>构成（两个参数）</p>
+<p>–布尔表达式：描述假设为真的情况</p>
+<p>–显示的信息：断言为假时</p>
+<p>demo：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">assert</span> denominator != <span class="number">0</span>: <span class="string">"denominator is unexpectly set to 0"</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="断言的用途"><a href="#断言的用途" class="headerlink" title="断言的用途"></a>断言的用途</h4><p>总结：判断一个子程序或一段代码的前后置条件是否符合预期</p>
+<p>（各种参数和流的状态）</p>
+<h4 id="什么时候使用Assertion"><a href="#什么时候使用Assertion" class="headerlink" title="什么时候使用Assertion"></a>什么时候使用Assertion</h4><p>主要用于开发和维护阶段</p>
+<p>生成产品代码时并不编译进去</p>
+<p><strong>断言用来检查永远不应该发生的情况</strong></p>
+<p><strong>错误处理用于处理来自系统外部的数据</strong></p>
+<h4 id="不变式Invariants"><a href="#不变式Invariants" class="headerlink" title="不变式Invariants"></a>不变式Invariants</h4><p>永远都应该为真的条件 </p>
+<p>内部不变式 – 程序运行到特定时刻应该为真的事实 – 如：assert x &gt; 0 </p>
+<p>控制流不变式 – 断言不会被运行到的代码，如assert false: suit; – 注意：将语句放置在编译器认为不会被运行到的地方会报错 （例如可以放到switch的default中）</p>
+<p>类不变式 – 指类对象作为有效的类成员必须满足的条件 – 如：assert person.age &gt;= 0 &amp;&amp; person.age &lt; 150; – 在即将从public方法和构造函数中返回时断言类的不变式 </p>
+<p>Assertions 可看做<strong>可执行</strong>注解</p>
+<p>Assertions 不能有任何副作用</p>
+<h3 id="错误处理技术"><a href="#错误处理技术" class="headerlink" title="错误处理技术"></a>错误处理技术</h3><p>错误处理用来处理那些预料中可能发生的错误</p>
+<h4 id="常用技术"><a href="#常用技术" class="headerlink" title="常用技术"></a>常用技术</h4><h5 id="返回中立值"><a href="#返回中立值" class="headerlink" title="返回中立值"></a>返回中立值</h5><p> –继续执行操作并简单地返回一个没有危害的数 值 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> 数值计算可以返回0 </span><br><span class="line"></span><br><span class="line"> 字符串操作可以返回空字符串 </span><br><span class="line"></span><br><span class="line"> 指针操作可以返回一个空指针</span><br></pre></td></tr></table></figure>
+
+<h5 id="换用下一个正确的数据"><a href="#换用下一个正确的数据" class="headerlink" title="换用下一个正确的数据"></a>换用下一个正确的数据</h5><p> –在处理数据流的时候，返回下一个正确的数据 即可 </p>
+<h5 id="返回与上一次相同的数据"><a href="#返回与上一次相同的数据" class="headerlink" title="返回与上一次相同的数据"></a>返回与上一次相同的数据</h5><p>–“重用上一次正确的结果” –如windows系统崩溃后用上一次配置重启动 </p>
+<h5 id="换用最接近的合法值"><a href="#换用最接近的合法值" class="headerlink" title="换用最接近的合法值"></a>换用最接近的合法值</h5><p>–常出现在数值超出其正常设定的上下界的时候 –Velocity的例子 </p>
+<h5 id="把警告信息记录到日志文件中"><a href="#把警告信息记录到日志文件中" class="headerlink" title="把警告信息记录到日志文件中"></a>把警告信息记录到日志文件中</h5><p> –在使用这种方法的时候需要对错误信息进行标示，或者 将警告信息单独存放，以便快速查询定位 –可以和其他技术结合使用 </p>
+<p>………</p>
+<p><strong>错误处理的最恰当方法是根据出现错误的软件类别而定</strong></p>
+<p>人身安全性命攸关的软件</p>
+<p>消费类软件</p>
+<h3 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h3><p>用异常通知程序的其他部分发生了不可不是的错误</p>
+<p>–提供了一种无法被忽视的错误通知机制</p>
+<p>–消除了错误向外扩散的可能</p>
+<p>但是调用子程序代码需要了解其中可能抛出的异常，弱化的封装性，增加了复杂度</p>
+<p><strong>不能用异常来推卸责任，乐意在局部处理掉的就在局部处理</strong></p>
+<p><strong>不要在构造函数和析构函数中抛出异常</strong></p>
+<p><strong>在恰当的抽象层次抛出异常</strong></p>
+<h3 id="隔栏"><a href="#隔栏" class="headerlink" title="隔栏"></a>隔栏</h3><p>隔栏的使用使断言和错误处理有了清晰的区分 隔栏部分包含了“脏数据” </p>
+<p>–隔栏外部的程序应使用错误处理技术，在那里对数 据做的任何假定都是不安全的 </p>
+<p>通过隔离部分之后的是“干净数据” </p>
+<p>–隔栏内部的程序就应使用断言技术，因为传进来的 数据应该己在通过隔栏时被清理过了 </p>
+<p>–隔栏内子程序出现错误数据，就是程序里的问题 </p>
+<h3 id="辅助调试代码"><a href="#辅助调试代码" class="headerlink" title="辅助调试代码"></a>辅助调试代码</h3><h4 id="进攻式编程"><a href="#进攻式编程" class="headerlink" title="进攻式编程"></a>进攻式编程</h4><p>主动暴露可能出现的错误</p>
+<p>常用方式：</p>
+<ol>
+<li>确保断言是程序终止运行</li>
+<li>完全填充分配到的所有内存</li>
+<li>完全填充已经分配到的文件和流</li>
+<li>确保default和else都能产生严重错误</li>
+<li>在删除一个对象前把它填满垃圾数据</li>
+<li>错误日志</li>
+</ol>
+<h4 id="计划移除调试辅助代码"><a href="#计划移除调试辅助代码" class="headerlink" title="计划移除调试辅助代码"></a>计划移除调试辅助代码</h4><ol>
+<li><h4 id="使用ant或make这样的版本控制工具和make工具"><a href="#使用ant或make这样的版本控制工具和make工具" class="headerlink" title="使用ant或make这样的版本控制工具和make工具"></a>使用ant或make这样的版本控制工具和make工具</h4></li>
+<li><h4 id="使用内置预处理器"><a href="#使用内置预处理器" class="headerlink" title="使用内置预处理器"></a>使用内置预处理器</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DEBUG</span></span><br><span class="line"><span class="meta">#ifdefined DEBUG</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+</li>
+<li><h4 id="使用调试存根（stubs）–-调试子程序"><a href="#使用调试存根（stubs）–-调试子程序" class="headerlink" title="使用调试存根（stubs）– 调试子程序"></a>使用调试存根（stubs）– 调试子程序</h4></li>
+</ol>
+<h4 id="产品中保留多少防御式编程代码"><a href="#产品中保留多少防御式编程代码" class="headerlink" title="产品中保留多少防御式编程代码"></a>产品中保留多少防御式编程代码</h4><ol>
+<li>保留检查重要错误的代码</li>
+<li>去掉检查细微错误的代码</li>
+<li>去掉可以导致程序硬性崩溃的代码</li>
+<li>保留可以让程序稳妥的崩溃的代码</li>
+<li>记录错误信息</li>
+<li>保证错误信息是友好的</li>
+</ol>
+<h3 id="指针和语句的编写"><a href="#指针和语句的编写" class="headerlink" title="指针和语句的编写"></a>指针和语句的编写</h3><p>指针的优势举例：</p>
+<p>计算一个一元实函数的定积分：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//java可以定义一个接口，然后一个函数去实现这个接口</span></span><br><span class="line"><span class="comment">//c++函数指针</span></span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">integrate</span><span class="params">(<span class="keyword">double</span> (f*)(<span class="keyword">double</span> x), <span class="keyword">double</span> up, <span class="keyword">double</span> down)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<h4 id="关于指针的构造技巧"><a href="#关于指针的构造技巧" class="headerlink" title="关于指针的构造技巧"></a>关于指针的构造技巧</h4><ol>
+<li><h5 id="不要吝啬指针变量的使用"><a href="#不要吝啬指针变量的使用" class="headerlink" title="不要吝啬指针变量的使用"></a>不要吝啬指针变量的使用</h5><p>—在链表中插入一个新节点的例子（如果新建一个指针指向current-&gt;next， 代码逻辑会清晰许多）</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//注意按照正确顺序删除链表中的指针</span></span><br><span class="line">insertNode-&gt;next = currentNode-&gt;next;</span><br><span class="line">insertNode-&gt;previous = currentNode;</span><br><span class="line"><span class="keyword">if</span> ( currentNode-&gt;next != <span class="literal">NULL</span>)&#123;</span><br><span class="line"> currentNode-&gt;next-&gt;previous = insertNode;</span><br><span class="line">&#125;</span><br><span class="line">currentNode-&gt;next= insertNode;</span><br><span class="line"></span><br><span class="line"><span class="comment">//optimize</span></span><br><span class="line">Node * followingNode = startNode-&gt;next;</span><br><span class="line">newMiddkeNode-&gt;next = followingNode;</span><br><span class="line">newMiddkeNode-&gt;previous = startNode;</span><br><span class="line"><span class="keyword">if</span> ( followingNode != <span class="literal">NULL</span>)&#123;</span><br><span class="line"> followingNode&gt;previous = newMiddkeNode;</span><br><span class="line">&#125;</span><br><span class="line"> startNode-&gt;next= newMiddkeNode;</span><br></pre></td></tr></table></figure>
+</li>
+<li><h5 id="避免指针强类型转换"><a href="#避免指针强类型转换" class="headerlink" title="避免指针强类型转换"></a>避免指针强类型转换</h5></li>
+<li><h5 id="删除与释放指针"><a href="#删除与释放指针" class="headerlink" title="删除与释放指针"></a>删除与释放指针</h5><ol>
+<li>指针消亡了不代表其指向的内存会释放， 要记得delete或free</li>
+<li>动态内存释放了，不代表指针会消亡或置NULL， 要记得将指针置NULL<ol>
+<li>悬挂指针</li>
+<li>多次释放</li>
+</ol>
+</li>
+<li>在删除变量前检查非法指针、在删除变量后将指针置NULL</li>
+<li>指针使用的范例：auto_ptr（注意：拷贝和赋值会转移指针所有权，防止二次释放）</li>
+</ol>
+</li>
+<li><h5 id="把指针操作独立在子程序中"><a href="#把指针操作独立在子程序中" class="headerlink" title="把指针操作独立在子程序中"></a>把指针操作独立在子程序中</h5></li>
+</ol>
+<h4 id="语句"><a href="#语句" class="headerlink" title="语句"></a>语句</h4><h4 id="条件语句"><a href="#条件语句" class="headerlink" title="条件语句"></a>条件语句</h4><h5 id="使用条件语句的指导原则"><a href="#使用条件语句的指导原则" class="headerlink" title="使用条件语句的指导原则"></a>使用条件语句的指导原则</h5><ol>
+<li>首先先写正常路径， 再处理不常见情况</li>
+<li>把正常情况的处理发到if后面而不要放到else后面</li>
+<li>确保等量分支的正确（差一）</li>
+<li>让if语句后面跟一个有意义的语句</li>
+<li>检查else</li>
+</ol>
+<h5 id="利用布尔函数封装复杂的检测"><a href="#利用布尔函数封装复杂的检测" class="headerlink" title="利用布尔函数封装复杂的检测"></a>利用布尔函数封装复杂的检测</h5><p>复杂的判断会降低代码可读性</p>
+<h5 id="善于利用一些编程语言的布尔判断的短路求值"><a href="#善于利用一些编程语言的布尔判断的短路求值" class="headerlink" title="善于利用一些编程语言的布尔判断的短路求值"></a>善于利用一些编程语言的布尔判断的短路求值</h5><h5 id="避免深层嵌套的方法"><a href="#避免深层嵌套的方法" class="headerlink" title="避免深层嵌套的方法"></a>避免深层嵌套的方法</h5><ol>
+<li>重复判断一些条件</li>
+<li>用if-then-else替换if-else — 并且在布尔表达式中允许一些冗余来使逻辑更加清晰</li>
+<li>转换为switch-case</li>
+<li>将一部分嵌套提取成子程序（提取的抽象层次要一致）</li>
+<li>使用OO的方法，例如编写一个简单工厂</li>
+</ol>
+<h4 id="循环语句"><a href="#循环语句" class="headerlink" title="循环语句"></a>循环语句</h4><h5 id="带退出的循环"><a href="#带退出的循环" class="headerlink" title="带退出的循环"></a>带退出的循环</h5><p>如果把循环条件写在循环的开始或结束处，那就需要写出一个半循环代码</p>
+<p>所谓半循环代码就是为了完成整个循环写在循环外的代码</p>
+<p>注意事项：</p>
+<ol>
+<li>把所有退出条件放在一处</li>
+<li>用注释来阐明操作意图</li>
+</ol>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Fortune</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://njussj.github.io/2020/05/18/%E8%BD%AF%E4%BB%B6%E6%9E%84%E9%80%A0/">http://njussj.github.io/2020/05/18/%E8%BD%AF%E4%BB%B6%E6%9E%84%E9%80%A0/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E8%BD%AF%E4%BB%B6%E6%9E%84%E9%80%A0/"># 软件构造</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2020/05/18/%E9%9C%80%E6%B1%82%E5%B7%A5%E7%A8%8B/">需求工程</a>
+            
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Fortune | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

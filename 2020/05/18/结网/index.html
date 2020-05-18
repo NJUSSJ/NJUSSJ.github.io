@@ -12,7 +12,7 @@
 
 
 
-<title>Hello World | Fortune Blog</title>
+<title>结网 | Fortune Blog</title>
 
 
 
@@ -54,8 +54,6 @@
                 
                     <a class="menu-item" href="/archives">Posts</a>
                 
-                    <a class="menu-item" href="/category">Categories</a>
-                
                     <a class="menu-item" href="/tag">Tags</a>
                 
                     <a class="menu-item" href="/about">About</a>
@@ -78,8 +76,6 @@
             <div class="menu" id="mobile-menu">
                 
                     <a class="menu-item" href="/archives">Posts</a>
-                
-                    <a class="menu-item" href="/category">Categories</a>
                 
                     <a class="menu-item" href="/tag">Tags</a>
                 
@@ -107,73 +103,11 @@
             <div class="container">
     
     
-        <div class="post-toc">
-    <div class="tocbot-list">
-    </div>
-    <div class="tocbot-list-menu">
-        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
-        <a onclick="go_top()">Back to top</a>
-        <a onclick="go_bottom()">Go to bottom</a>
-    </div>
-</div>
-
-<script>
-    document.ready(
-        function () {
-            tocbot.init({
-                tocSelector: '.tocbot-list',
-                contentSelector: '.post-content',
-                headingSelector: 'h1, h2, h3, h4, h5',
-                collapseDepth: 1,
-                orderedList: false,
-                scrollSmooth: true,
-            })
-        }
-    )
-
-    function expand_toc() {
-        var b = document.querySelector(".tocbot-toc-expand");
-        tocbot.init({
-            tocSelector: '.tocbot-list',
-            contentSelector: '.post-content',
-            headingSelector: 'h1, h2, h3, h4, h5',
-            collapseDepth: 6,
-            orderedList: false,
-            scrollSmooth: true,
-        });
-        b.setAttribute("onclick", "collapse_toc()");
-        b.innerHTML = "Collapse all"
-    }
-
-    function collapse_toc() {
-        var b = document.querySelector(".tocbot-toc-expand");
-        tocbot.init({
-            tocSelector: '.tocbot-list',
-            contentSelector: '.post-content',
-            headingSelector: 'h1, h2, h3, h4, h5',
-            collapseDepth: 1,
-            orderedList: false,
-            scrollSmooth: true,
-        });
-        b.setAttribute("onclick", "expand_toc()");
-        b.innerHTML = "Expand all"
-    }
-
-    function go_top() {
-        window.scrollTo(0, 0);
-    }
-
-    function go_bottom() {
-        window.scrollTo(0, document.body.scrollHeight);
-    }
-
-</script>
-    
 
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">Hello World</h1>
+            <h1 class="post-title">结网</h1>
             
                 <div class="post-meta">
                     
@@ -182,7 +116,7 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">May 18, 2020&nbsp;&nbsp;15:41:14</a>
+                        Date: <a href="#">May 18, 2020&nbsp;&nbsp;20:19:45</a>
                         </span>
                     
                     
@@ -191,19 +125,7 @@
         </header>
 
         <div class="post-content">
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+            <p><img src="/.io//%E7%BB%93%E7%BD%91.png" alt></p>
 
         </div>
 
@@ -218,7 +140,7 @@
                 
                     <p class="copyright-item">
                         <span>Permalink:</span>
-                        <span><a href="http://njussj.github.io/2020/05/18/hello-world/">http://njussj.github.io/2020/05/18/hello-world/</a></span>
+                        <span><a href="http://njussj.github.io/2020/05/18/%E7%BB%93%E7%BD%91/">http://njussj.github.io/2020/05/18/%E7%BB%93%E7%BD%91/</a></span>
                     </p>
                 
                 
@@ -241,6 +163,10 @@
                 <span>Tag(s):</span>
                 <span class="tag">
                     
+                    
+                        <a href="/tags/%E4%BA%A7%E5%93%81/"># 产品</a>
+                    
+                        
                 </span>
             </div>
             <div>
@@ -251,6 +177,8 @@
         </section>
         <section class="post-nav">
             
+            
+            <a class="next" rel="next" href="/2020/05/18/%E9%9C%80%E6%B1%82%E5%B7%A5%E7%A8%8B/">需求工程</a>
             
         </section>
 
