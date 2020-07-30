@@ -105,99 +105,11 @@
 </script>
         <div class="main">
             <div class="container">
-    
-    
-        <div class="post-toc">
-    <div class="tocbot-list">
-    </div>
-    <div class="tocbot-list-menu">
-        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
-        <a onclick="go_top()">Back to top</a>
-        <a onclick="go_bottom()">Go to bottom</a>
-    </div>
-</div>
-
-<script>
-    document.ready(
-        function () {
-            tocbot.init({
-                tocSelector: '.tocbot-list',
-                contentSelector: '.post-content',
-                headingSelector: 'h1, h2, h3, h4, h5',
-                collapseDepth: 1,
-                orderedList: false,
-                scrollSmooth: true,
-            })
-        }
-    )
-
-    function expand_toc() {
-        var b = document.querySelector(".tocbot-toc-expand");
-        tocbot.init({
-            tocSelector: '.tocbot-list',
-            contentSelector: '.post-content',
-            headingSelector: 'h1, h2, h3, h4, h5',
-            collapseDepth: 6,
-            orderedList: false,
-            scrollSmooth: true,
-        });
-        b.setAttribute("onclick", "collapse_toc()");
-        b.innerHTML = "Collapse all"
-    }
-
-    function collapse_toc() {
-        var b = document.querySelector(".tocbot-toc-expand");
-        tocbot.init({
-            tocSelector: '.tocbot-list',
-            contentSelector: '.post-content',
-            headingSelector: 'h1, h2, h3, h4, h5',
-            collapseDepth: 1,
-            orderedList: false,
-            scrollSmooth: true,
-        });
-        b.setAttribute("onclick", "expand_toc()");
-        b.innerHTML = "Expand all"
-    }
-
-    function go_top() {
-        window.scrollTo(0, 0);
-    }
-
-    function go_bottom() {
-        window.scrollTo(0, document.body.scrollHeight);
-    }
-
-</script>
-    
-
-    
-    <article class="post-wrap">
-        <header class="post-header">
-            <h1 class="post-title">LeetCode</h1>
-            
-                <div class="post-meta">
-                    
-                        Author: <a itemprop="author" rel="author" href="/">Fortune</a>
-                    
-
-                    
-                        <span class="post-time">
-                        Date: <a href="#">June 29, 2020&nbsp;&nbsp;10:52:08</a>
-                        </span>
-                    
-                    
-                        <span class="post-category">
-                    Category:
-                            
-                                <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a>
-                            
-                        </span>
-                    
-                </div>
-            
-        </header>
-
-        <div class="post-content">
+    <article class="post-wrap page">
+        
+        <h2 class="post-title">LeetCode</h2>
+        
+        <section class="post-content">
             <blockquote>
 <p>这篇博客用于记录Fortune的LeetCode的刷题记录，基本每道题都包括了基础思路和follow up，我会尽力保障代码风格和充足注释的💪！</p>
 </blockquote>
@@ -291,83 +203,10 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 思路：暴力遍历寻找左右两侧最近的更矮柱子</span></span><br><span class="line"><span class="comment">* 时间复杂度：O(n); 空间复杂度：O(1) </span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">largestRectangleArea</span><span class="params">(<span class="keyword">int</span>[] heights)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> area = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; heights.length; i++) &#123;</span><br><span class="line">            <span class="keyword">int</span> height = heights[i];</span><br><span class="line">            <span class="keyword">int</span> left = i, right = i;</span><br><span class="line">            <span class="keyword">while</span> (left &gt;= <span class="number">0</span> &amp;&amp; heights[left] &gt;= height) &#123;</span><br><span class="line">                left --;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">while</span> (right &lt;= heights.length - <span class="number">1</span> &amp;&amp; heights[right] &gt;= height) &#123;</span><br><span class="line">                right ++;</span><br><span class="line">            &#125;</span><br><span class="line">            area = Math.max(area, height * (right - left - <span class="number">1</span>));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> area;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 思路：单调栈（单调递减栈）：通过单调递减栈保障栈中每个元素的下一个元素为其左边最近的更小元素</span></span><br><span class="line"><span class="comment">* 每次压栈时，如果大于等于栈顶元素则直接压栈；否则弹出栈中所有比该元素大的元素，该元素为这些弹出元素右边最近的更小元素</span></span><br><span class="line"><span class="comment">* 时间复杂度：O(n); 空间复杂度：O(n)</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">largestRectangleArea</span><span class="params">(<span class="keyword">int</span>[] heights)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> area = <span class="number">0</span>;</span><br><span class="line">        <span class="comment">// 为了简化代码，在数组头尾各插入一个0（保障左右两侧一定有更小元素）</span></span><br><span class="line">        <span class="keyword">int</span>[] copyHeights = <span class="keyword">new</span> <span class="keyword">int</span>[heights.length + <span class="number">2</span>];</span><br><span class="line">        System.arraycopy(heights, <span class="number">0</span>, copyHeights, <span class="number">1</span>, heights.length);</span><br><span class="line">        Stack&lt;Integer&gt; stack = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; copyHeights.length; i++) &#123;</span><br><span class="line">             <span class="keyword">while</span> (!stack.isEmpty() &amp;&amp; copyHeights[stack.peek()] &gt; copyHeights[i]) &#123;</span><br><span class="line">                 <span class="keyword">int</span> height = copyHeights[stack.pop()];</span><br><span class="line">                 <span class="keyword">int</span> width = i - stack.peek() - <span class="number">1</span>;</span><br><span class="line">                 area = Math.max(area, height * width);</span><br><span class="line">             &#125;</span><br><span class="line">             stack.push(i);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> area;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
-        </div>
-
-        
-            <section class="post-copyright">
-                
-                    <p class="copyright-item">
-                        <span>Author:</span>
-                        <span>Fortune</span>
-                    </p>
-                
-                
-                    <p class="copyright-item">
-                        <span>Permalink:</span>
-                        <span><a href="http://njussj.github.io/2020/06/29/LeetCode/">http://njussj.github.io/2020/06/29/LeetCode/</a></span>
-                    </p>
-                
-                
-                    <p class="copyright-item">
-                        <span>License:</span>
-                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC-BY-NC-4.0</a> LICENSE</span>
-                    </p>
-                
-                
-                     <p class="copyright-item">
-                         <span>Slogan:</span>
-                         <span>Do you believe in <strong>DESTINY</strong>?</span>
-                     </p>
-                
-
-            </section>
-        
-        <section class="post-tags">
-            <div>
-                <span>Tag(s):</span>
-                <span class="tag">
-                    
-                    
-                        <a href="/tags/LeetCode/"># LeetCode</a>
-                    
-                        
-                </span>
-            </div>
-            <div>
-                <a href="javascript:window.history.back();">back</a>
-                <span>· </span>
-                <a href="/">home</a>
-            </div>
         </section>
-        <section class="post-nav">
-            
-                <a class="prev" rel="prev" href="/2020/07/30/BoolOperatorOfJS/">深入理解JS布尔操作符</a>
-            
-            
-            <a class="next" rel="next" href="/2020/05/18/ArchitectureofWeb/">结网</a>
-            
-        </section>
-
-
     </article>
 </div>
 
-{% elseif theme.gitalk.enable %}
-    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
-<div id="gitalk-container"></div>
-<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
-<script type="text/javascript">
-    var gitalk = new Gitalk({
-        clientID: '5003957937ff0e5d4670',
-        clientSecret: 'e8a3ed83df298de84a9c182d073f1aa8d13dc7ab',
-        id: window.location.pathname,
-        repo: 'NJUSSJ.github.io',
-        owner: 'NJUSSJ',
-        admin: 'NJUSSJ'
-    })
-    gitalk.render('gitalk-container')
-</script>
-{% endif %}
         </div>
         <footer id="footer" class="footer">
     <div class="copyright">
