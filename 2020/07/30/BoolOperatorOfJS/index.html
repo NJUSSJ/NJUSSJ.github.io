@@ -242,7 +242,7 @@
 </ol>
 <p>不难发现这与我所总结规则的第一条是矛盾的，矛盾的情况为当逻辑与 &amp;&amp; 的第一个操作数为布尔值false的情况，</p>
 <p>下图为控制台验证结果：</p>
-<p><img src="/2020/07/30/BoolOperatorOfJS/pic3.PNG" alt></p>
+<p><img src="/2020/07/30/BoolOperatorOfJS/pic3.png" alt></p>
 <p>由这里的控制台输出我们可以发现，结果依旧在上述两条规则的射程范围内，但是却与红宝书的描述相悖。</p>
 <h3 id="用法-1"><a href="#用法-1" class="headerlink" title="用法"></a>用法</h3><p>利用逻辑与的上述规则（利用“短路逻辑”），我们或许可以总结这样较为简洁的两种用法：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 判断某些对象是否都存在</span></span><br><span class="line"><span class="keyword">var</span> res = !!(candidate1 &amp;&amp; candidate2 &amp;&amp; candidate3);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 防止属性访问错误</span></span><br><span class="line"><span class="keyword">if</span> (client.browser.ie &amp;&amp; client.browser.ie &lt; <span class="number">7</span>) &#123;</span><br><span class="line">    <span class="comment">// do something</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
