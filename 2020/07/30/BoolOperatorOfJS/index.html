@@ -105,11 +105,99 @@
 </script>
         <div class="main">
             <div class="container">
-    <article class="post-wrap page">
-        
-        <h2 class="post-title">深入理解JS布尔操作符</h2>
-        
-        <section class="post-content">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">深入理解JS布尔操作符</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Fortune</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">July 30, 2020&nbsp;&nbsp;11:31:27</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/FrontEnd/">FrontEnd</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
             <blockquote>
 <p>原来布尔操作符不止可以操作布尔值😮</p>
 </blockquote>
@@ -204,9 +292,80 @@
 <p>关于类型转换带来的问题，一直困惑我的相关问题还有JavaScript中 ==和=== 的使用，虽然知道一般来说使用===，不过对其背后发生了什么还是有些模糊，后续我也会打算针对这个内容写一篇相关博客明确以下认知。</p>
 <p>这是我开始深入学习JavaScript后尝试写的第一篇博客，目前还只是窥见了这门语言的冰山一角，希望可以以此为起点，朝着合格的软件工程师继续迈进💪</p>
 
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Fortune</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://njussj.github.io/2020/07/30/BoolOperatorOfJS/">http://njussj.github.io/2020/07/30/BoolOperatorOfJS/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/JavaScript/"># JavaScript</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
         </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2020/06/29/LeetCode/">LeetCode</a>
+            
+        </section>
+
+
     </article>
 </div>
+
+
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<div id="gitalk-container"></div>
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+    var gitalk = new Gitalk({
+        clientID: '5003957937ff0e5d4670',
+        clientSecret: 'e8a3ed83df298de84a9c182d073f1aa8d13dc7ab',
+        id: window.location.pathname,
+        repo: 'NJUSSJ.github.io',
+        owner: 'NJUSSJ',
+        admin: 'NJUSSJ'
+    })
+    gitalk.render('gitalk-container')
+</script>
 
         </div>
         <footer id="footer" class="footer">
