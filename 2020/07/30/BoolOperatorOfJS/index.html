@@ -351,6 +351,22 @@
     </article>
 </div>
 
+{% elseif theme.gitalk.enable %}
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<div id="gitalk-container"></div>
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+    var gitalk = new Gitalk({
+        clientID: '5003957937ff0e5d4670',
+        clientSecret: 'e8a3ed83df298de84a9c182d073f1aa8d13dc7ab',
+        id: window.location.pathname,
+        repo: 'NJUSSJ.github.io',
+        owner: 'NJUSSJ',
+        admin: 'NJUSSJ'
+    })
+    gitalk.render('gitalk-container')
+</script>
+{% endif %}
         </div>
         <footer id="footer" class="footer">
     <div class="copyright">
