@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Fortune">
+
+
+
+
+
+<title>一个老八股的问题：JavaScript中的this指向 | Fortune Blog</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Fortune&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Fortune&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">一个老八股的问题：JavaScript中的this指向</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Fortune</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">August 1, 2020&nbsp;&nbsp;18:40:54</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/FrontEnd/">FrontEnd</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <blockquote>
+<p>摇身一变，函数在JavaScript中成了一等公民👏</p>
+</blockquote>
+<p>在以往的编程学习中，当我们面向过程时，函数是特定作用域下的一组指令序列；在面向对象时，函数往往又依附于某个类而存在，作为其成员方法。但是到了JavaScript中，函数却成了面向对象编程中的一等公民，它不再像在Java中一样作为某个对象的附庸而存在。但是与此同时，我们也就需要一种机制来动态地指定函数对象的执行环境，this的主要作用也就在此。</p>
+<p>而我们之所以在过去很长一段时间里总是在讨论“this指向”这个问题，其根源也在于在JavaScript中，函数是对象，其据以执行的环境对象并不像Java这样的完备的面向对象语言中这么明确。<strong>所以在讨论this指向之前，我们需要明确，this的在JavaScript中的作用是为了动态地指定函数对象据以执行的环境对象。</strong>而不是像Java中那样主要用于在类的方法中区分函数的形参和实例属性。</p>
+<p>这篇博客主要是想帮助自己梳理一下不同情况下的this指向，我这里将其分为如下四类情况：</p>
+<ul>
+<li>全局环境下&amp;对象上下文情况下的this指向</li>
+<li>作为构造函数和new配合使用时的this指向</li>
+<li>call/apply/bind指定this指向</li>
+<li>箭头函数的this指向</li>
+</ul>
+<p>在讨论这些情况的this指向之前，我觉得我们得先明确一点：一般函数对象会在什么时候确认其this的指向？（这里强调一般是为了区别箭头函数，因为其并没有this）</p>
+<p>红宝书中总结了函数对象在其创建和执行的过程中所发生的一系列动作）：</p>
+<ol>
+<li>函数创建<ul>
+<li>构造其作用域链，对象中[[Scope]]指向作用域链</li>
+</ul>
+</li>
+<li>函数执行<ul>
+<li>创建函数的执行环境</li>
+<li>复制作用域链到执行环境</li>
+<li>创建函数的变量对象（活动对象）<ul>
+<li>获取this和arguments到活动对象</li>
+</ul>
+</li>
+<li>在作用域链前端压入当前函数的变量对象</li>
+</ul>
+</li>
+</ol>
+<p>我们可以看到，函数一直到执行时，才会获取this指针的指向并保存在当前的变量对象（活动对象）中。我们现在明确了this在什么时刻确认其指向，那么我们再来讨论上述的四种情况。</p>
+<h3 id="全局环境下-amp-对象上下文情况下的this指向"><a href="#全局环境下-amp-对象上下文情况下的this指向" class="headerlink" title="全局环境下&amp;对象上下文情况下的this指向"></a>全局环境下&amp;对象上下文情况下的this指向</h3><p>在写这篇博客之前，翻看了知乎上很多回答，也去看了阮一峰老师那篇流传甚广的关于this指向的博客，可是所看到的内容几乎都在在讨论现象，即告诉读者在全局环境下this指向全局对象、在对象上下文中this指向调用它的对象……但是并没有给出原因，即函数在执行时自身做了怎样的判断来确认其this的指向。其实我最终也没有能给出一个可以得到验证的答案，所以这种情况下我的下述讨论只是一种协助理解的对原因的猜测，并不一定正确。</p>
+<p>这里我先说我的结论：<strong>不考虑函数自身call/apply/bind方法的情况下，针对一次函数的执行或者说调用，其必定来自于浏览器内存中某一处对该函数对象的引用，如果这个引用位于普通对象中，则this指向该对象(严格模式下，如果为全局对象，则this指向为undefined)；如果这个引用位于某个函数的变量对象中，this则指向全局对象window（在严格模式下this指向为undefined）。</strong> </p>
+<p>结合下述代码，我们对上述结论进行验证：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> word = <span class="string">'global'</span>; <span class="comment">// 这里注意是var，let声明的变量不再作为顶层对象的属性存在</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.word);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> obj1 = &#123;</span><br><span class="line">    word: <span class="string">'obj1'</span>,</span><br><span class="line">    fn: fn</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> obj2 = &#123;</span><br><span class="line">    word: <span class="string">'obj2'</span>,</span><br><span class="line">    fn: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        obj1.fn();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> obj3 = &#123;</span><br><span class="line">    word: <span class="string">'obj3'</span>,</span><br><span class="line">    fn: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">let</span> fn = obj1.fn;</span><br><span class="line">        fn();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">fn(); <span class="comment">// 全局对象中的引用调用，this在非严格模式下指向window（来源对象）</span></span><br><span class="line">obj1.fn(); <span class="comment">// 对象中的引用调用，this指向来源对象</span></span><br><span class="line">obj2.fn(); <span class="comment">// 对象中的引用调用，this指向来源对象</span></span><br><span class="line">obj3.fn(); <span class="comment">// 变量对象中的引用调用，this子啊非严格模式下指向window</span></span><br></pre></td></tr></table></figure>
+
+<p>上述代码的控制台输出：global、obj1、obj1、global</p>
+<p>如果在严格模式下，第一个调用和最后一个调用由于this指向undefined，所以会直接抛出错误。</p>
+<h3 id="作为构造函数和new配合使用时的this指向"><a href="#作为构造函数和new配合使用时的this指向" class="headerlink" title="作为构造函数和new配合使用时的this指向"></a>作为构造函数和new配合使用时的this指向</h3><p>这种情况下的this指向相对来说比较好解释，我们只需要知道在使用new来调用构造函数时，JavaScript引擎做了哪些工作。根据红宝书的明确描述，包含以下四个步骤：</p>
+<ol>
+<li>创建一个新的对象</li>
+<li>将函数的this指向这个对象</li>
+<li>执行函数体</li>
+<li>返回这个对象（即this）</li>
+</ol>
+<p>如果不考虑细节，上述步骤可以用代码这样描述：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 构造函数为Foo()</span></span><br><span class="line">obj = &#123;&#125;;</span><br><span class="line">obj._proto_ = Foo.prototype;</span><br><span class="line">Foo.call(obj)</span><br><span class="line"><span class="keyword">return</span> obj</span><br></pre></td></tr></table></figure>
+
+<p>很明确对不对，构造函数的this就指向了他要构造的实例。</p>
+<h3 id="call-apply-bind指定this指向"><a href="#call-apply-bind指定this指向" class="headerlink" title="call/apply/bind指定this指向"></a>call/apply/bind指定this指向</h3><p>这类情况函数的this指向则更为明确，函数的this指向就是call/apply/bind所指定的对象。</p>
+<h3 id="箭头函数的this指向"><a href="#箭头函数的this指向" class="headerlink" title="箭头函数的this指向"></a>箭头函数的this指向</h3><p>在讨论的一开始，我们就将箭头函数和普通函数对象做了区分，因为在MDN规范中，直接指出了<strong>箭头函数没有this</strong>，即在函数执行的开始，箭头函数并不会主动的去添加this到其当前变量对象（活动对象）中。</p>
+<p><strong>在箭头函数中使用this，我们只需将其看作一个普通变量，顺着函数的作用域链逐级向上寻找就行。</strong> </p>
+<p>箭头函数的这种特性让其在将函数作为参数传递等场景下大放异彩，因为在其出现前，如果我们需要维护一个函数的this指向，我们需要调用函数原型中的bind方法，而我们知道bind函数返回的是一个闭包，这一定会为程序带来额外的开销。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>不考虑箭头函数，那么一个函数对象的this指向什么不取决于函数的定义，也不取决于函数在哪儿被调用，而是取决于如何被调用：</p>
+<ul>
+<li>被变量对象中的引用调用：f()</li>
+<li>被普通对象中的引用调用：obj.f()</li>
+<li>call/apply/bind调用：f.call(obj)</li>
+<li>new调用构造函数：new f()</li>
+</ul>
+<p>在当前ES6中已经有了class以及箭头函数后，这篇博文所讨论的问题似乎已经没有了价值，因为在JavaScript逐步向OOP靠拢的趋势下，this的指向问题对开发者几乎可以看作是透明的了，知乎上包括<a href="https://www.zhihu.com/question/353757734/answer/949586717" target="_blank" rel="noopener">黄玄</a>在内一众大佬均认为，在ES6的环境下，this仅应该和class配合使用才是正确的表达方式。类似我这里讨论的这些关于this 的冗长繁复的所谓原理，从某些角度看，都只是早期JavaScript的设计失误。所以，在ES6环境下使用this时，我们只需要明白，this在class中使用，指向该类实例。这里需要注意如果class中的方法作为参数传递，我们要么在constructor中使用bind将当前this绑定到函数对象，要么使用传递一个箭头函数并在箭头函数中通过this调用要传递的函数。</p>
+<p>写这篇博客的初衷或许也只是觉得了解的更深入一下this或许没有什么坏处，也能更自信的使用不用担心其背后可能会发生的问题。还有保不准以后会遇到科举考官呢😏</p>
+
+        </div>
+        
+        
+            <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<div id="gitalk-container"></div>
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+    var gitalk = new Gitalk({
+        clientID: '5003957937ff0e5d4670',
+        clientSecret: 'e8a3ed83df298de84a9c182d073f1aa8d13dc7ab',
+        id: window.location.pathname,
+        repo: 'NJUSSJ.github.io',
+        owner: 'NJUSSJ',
+        admin: 'NJUSSJ'
+    })
+    gitalk.render('gitalk-container')
+</script>
+        
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Fortune</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://njussj.github.io/2020/08/01/ThisOfJS/">http://njussj.github.io/2020/08/01/ThisOfJS/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/javascript/"># javascript</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2020/07/30/BoolOperatorOfJS/">深入理解JS布尔操作符</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Fortune | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>
