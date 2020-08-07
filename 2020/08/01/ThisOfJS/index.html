@@ -198,10 +198,14 @@
         </header>
 
         <div class="post-content">
-            <blockquote>
-<p>摇身一变，函数在JavaScript中成了一等公民👏</p>
+            <p>在以往的编程学习中，当我们面向过程时，函数是特定作用域下的一组指令序列；在面向对象时，函数往往又依附于某个类而存在，作为其成员方法。但是到了JavaScript中，函数却成了一等公民，它不再像在Java中一样作为某个对象的附庸而存在。</p>
+<p>上述只是我在第一次看到“在JavaScript中，函数是一等公民”这句话时候的直观感受，但是由此我又有了疑惑：何谓“一等公民”？</p>
+<p>查阅资料，我们发现在《Programming Language Pragmatics》这本书中，给出了关于编程语言中“一等公民”的权威解释。</p>
+<blockquote>
+<p>In general, a value in a programming language is said to have ﬁrst-class status if it can be passed as a parameter, returned from a subroutine, or assigned into a variable.</p>
 </blockquote>
-<p>在以往的编程学习中，当我们面向过程时，函数是特定作用域下的一组指令序列；在面向对象时，函数往往又依附于某个类而存在，作为其成员方法。但是到了JavaScript中，函数却成了面向对象编程中的一等公民，它不再像在Java中一样作为某个对象的附庸而存在。但是与此同时，我们也就需要一种机制来动态地指定函数对象的执行环境，this的主要作用也就在此。</p>
+<p>翻译一下就是：在编程语言中，一等公民可以作为函数的参数、返回值、也可以赋值给变量。我们知道，函数在JavaScript中是Function对象的实例，其当然符合“一等公民”的身份。</p>
+<p>在这样的情况下，我们也就需要一种机制来动态地指定函数对象的执行环境，this的主要作用也就在此。</p>
 <p>而我们之所以在过去很长一段时间里总是在讨论“this指向”这个问题，其根源也在于在JavaScript中，函数是对象，其据以执行的环境对象并不像Java这样的完备的面向对象语言中这么明确。<strong>所以在讨论this指向之前，我们需要明确，this的在JavaScript中的作用是为了动态地指定函数对象据以执行的环境对象。</strong>而不是像Java中那样主要用于在类的方法中区分函数的形参和实例属性。</p>
 <p>这篇博客主要是想帮助自己梳理一下不同情况下的this指向，我这里将其分为如下四类情况：</p>
 <ul>
@@ -261,7 +265,7 @@
 <li>new调用构造函数：new f() → this指向新构造的实例</li>
 <li>箭头函数：没有this，在作用域链中查询</li>
 </ul>
-<p>在当前ES6中已经有了class以及箭头函数后，这篇博文所讨论的问题似乎已经没有了价值，因为在JavaScript逐步向OOP靠拢的趋势下，this的指向问题对开发者几乎可以看作是透明的了，知乎上包括<a href="https://www.zhihu.com/question/353757734/answer/949586717" target="_blank" rel="noopener">黄玄</a>在内一众大佬均认为，在ES6的环境下，this仅应该和class配合使用才是正确的表达方式。类似我这里讨论的这些关于this 的冗长繁复的所谓原理，从某些角度看，都只是早期JavaScript的设计失误。所以，在ES6环境下使用this时，我们只需要明白，this在class中使用，指向该类实例。这里需要注意如果class中的方法作为参数传递，我们要么在constructor中使用bind将当前this绑定到函数对象，要么使用传递一个箭头函数并在箭头函数中通过this调用要传递的函数。</p>
+<p>在当前ES6中已经有了class以及箭头函数后，这篇博文所讨论的问题似乎已经没有了价值，因为在JavaScript逐步向OOP靠拢的趋势下，this的指向问题对开发者几乎可以看作是透明的了，知乎上包括<a href="https://www.zhihu.com/question/353757734/answer/949586717" target="_blank" rel="noopener">黄玄</a>在内一众大佬均认为，在ES6的环境下，this仅应该和class配合使用才是正确的表达方式。类似我这里讨论的这些关于this 的冗长繁复的所谓原理，从某些角度看，都只是早期JavaScript的设计失误。所以，在ES6环境下使用this时，我们只需要明确，this在class中使用，指向该类实例。这里需要注意如果class中的方法作为参数传递到class外部，我们要么在constructor中使用bind将当前this绑定到函数对象，要么使用传递一个箭头函数并在箭头函数中通过this调用要传递的函数。</p>
 <p>写这篇博客的初衷或许也只是觉得了解的更深入一下this或许没有什么坏处，也能更自信的使用不用担心其背后可能会发生的问题。还有保不准以后会遇到科举考官呢😏</p>
 
         </div>
