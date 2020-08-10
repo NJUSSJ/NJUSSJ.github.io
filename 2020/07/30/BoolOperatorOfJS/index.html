@@ -244,8 +244,8 @@
 <p>下图为控制台验证结果：</p>
 <p><img src="/2020/07/30/BoolOperatorOfJS/pic3.png" alt></p>
 <p>由这里的控制台输出我们可以发现，结果依旧在上述两条规则的射程范围内，但是却与红宝书的描述相悖。</p>
-<h3 id="用法-1"><a href="#用法-1" class="headerlink" title="用法"></a>用法</h3><p>利用逻辑与的上述规则（利用“短路逻辑”），我们或许可以总结这样较为简洁的两种用法：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 判断某些对象是否都存在</span></span><br><span class="line"><span class="keyword">var</span> res = !!(candidate1 &amp;&amp; candidate2 &amp;&amp; candidate3);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 防止属性访问错误</span></span><br><span class="line"><span class="keyword">if</span> (client.browser.ie &amp;&amp; client.browser.ie &lt; <span class="number">7</span>) &#123;</span><br><span class="line">    <span class="comment">// do something</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="用法-1"><a href="#用法-1" class="headerlink" title="用法"></a>用法</h3><p>利用逻辑与的上述规则（利用“短路求值”），我们或许可以总结这样较为简洁的两种用法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 寻找第一个假值</span></span><br><span class="line"><span class="keyword">var</span> res = candidate1 &amp;&amp; candidate2 &amp;&amp; candidate3;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 防止属性访问错误</span></span><br><span class="line"><span class="keyword">if</span> (client.browser.ie &amp;&amp; client.browser.ie &lt; <span class="number">7</span>) &#123;</span><br><span class="line">    <span class="comment">// do something</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
@@ -259,7 +259,7 @@
 </ul>
 <p>这里的两条规则同样适用于所有类型的操作数。</p>
 <h3 id="用法-2"><a href="#用法-2" class="headerlink" title="用法"></a>用法</h3><p>利用上述特性，逻辑或可以进行这样的简洁操作</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//进行对象的优先选择：跨浏览器事件对象处理</span></span><br><span class="line">&#123;</span><br><span class="line">    getTarget: <span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> event.target || event.srcElement;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//寻找第一个真值，进行对象的优先选择：跨浏览器事件对象处理</span></span><br><span class="line">&#123;</span><br><span class="line">    getTarget: <span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> event.target || event.srcElement;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
@@ -279,18 +279,17 @@
 <li>第一个操作数<strong>求值</strong>为false时，直接返回第一个操作数</li>
 <li>第一个操作数<strong>求值</strong>为true时，返回第二个操作数</li>
 </ul>
-<p>应用：判断对象存在、防止属性访问错误</p>
+<p>应用：寻找第一个假值、防止属性访问错误（第一个操作数求值为真才会执行第二个操作数中的操作）</p>
 <p><strong>逻辑或规则 ||</strong></p>
 <ul>
 <li>第一个操作数<strong>求值</strong>为true时，直接返回起一个操作数</li>
 <li>第一个操作数<strong>求值</strong>为false时，返回第二个操作数</li>
 </ul>
-<p>应用：进行对象的优先选择</p>
+<p>应用：寻找第一个真值，进行对象的优先选择</p>
 <hr>
 <p>其实，上述的这些复杂度和“便利”都是由JavaScript的松散变量类型的特性引入的，因为该特性，在JavaScript的编程中总是会存在这样或那样的隐式的类型转换，不光是布尔操作符的计算过程中会存在布尔求值这样的隐式类型转换，在数值运算操作符中也会存在隐式的向数值类型的类型转换。</p>
 <p>写这篇博客的缘由和初衷或许有以下两点吧：布尔操作符的返回值相较于其他操作符来说更为复杂，因为他会按原有类型直接返回操作数，当然这在引入复杂度的同时也带来了便利；再者就是红宝书对于这段的描述多多少少有些复杂并且存在一些问题。</p>
 <p>关于类型转换带来的问题，一直困惑我的相关问题还有JavaScript中 ==和=== 的使用，虽然知道一般来说使用===，不过对其背后发生了什么还是有些模糊，后续我也会打算针对这个内容写一篇相关博客明确以下认知。</p>
-<p>这是我开始深入学习JavaScript后尝试写的第一篇博客，目前还只是窥见了这门语言的冰山一角，希望可以以此为起点，朝着合格的软件工程师继续迈进💪</p>
 
         </div>
         
