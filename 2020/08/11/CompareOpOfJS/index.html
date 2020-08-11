@@ -12,7 +12,7 @@
 
 
 
-<title>需求工程知识图谱 | Fortune Blog</title>
+<title>关于：JavaScript中值的比较 | Fortune Blog</title>
 
 
 
@@ -173,7 +173,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">需求工程知识图谱</h1>
+            <h1 class="post-title">关于：JavaScript中值的比较</h1>
             
                 <div class="post-meta">
                     
@@ -182,14 +182,14 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">August 4, 2020&nbsp;&nbsp;17:23:04</a>
+                        Date: <a href="#">August 11, 2020&nbsp;&nbsp;10:20:12</a>
                         </span>
                     
                     
                         <span class="post-category">
                     Category:
                             
-                                <a href="/categories/%E4%BA%A7%E5%93%81/">产品</a>
+                                <a href="/categories/FrontEnd/">FrontEnd</a>
                             
                         </span>
                     
@@ -198,15 +198,16 @@
         </header>
 
         <div class="post-content">
-            <blockquote>
-<p>一个老笑话：用户说他想要一匹更快的🐎，于是有人造出了汽车。</p>
-</blockquote>
-<p>在过去，总有人会将产品经理定义为用户或者运营和开发之间的传声筒，但是事实往往是运营提出了10个需求，而产品最终交付到开发手中的却只有1个需求。所以说现如今，对产品经理而言，能够进行需求的获取、分析过滤以及最终建模形成一套可行的解决方案，应是其最重要的核心能力之一。需求工程则从工程的角度，为上述需求的生命周期的递进，提出了一套系统的方法论。这篇博客将分别以需求工程基础、需求分析方法、需求文档化为核心，给出需求工程基础的知识图谱。由于只是以脑图的形式给出了该领域的知识框架，所以并不会涉及太丰富的细节，更多的细节可以参考《软件开发技术基础(卷二)》。后续我也会尝试结合具体的项目，给出需求分析和需求文档化部分的实践，以此来覆盖相关细节。</p>
-<h3 id="需求工程基础"><a href="#需求工程基础" class="headerlink" title="需求工程基础"></a>需求工程基础</h3><p><img src="/2020/08/04/RequirementEngineering/pic1.png" alt="需求工程基础"></p>
-<h3 id="需求分析方法"><a href="#需求分析方法" class="headerlink" title="需求分析方法"></a>需求分析方法</h3><p><img src="/2020/08/04/RequirementEngineering/pic2.png" alt="需求分析方法"></p>
-<p>上述脑图中在较高抽象层次给出了两类需求分析方法，分别是结构化和面向对象的需求分析方法，下面两张图片分别描述了在这两类方法的实践过程中，各类模型的所发挥的作用以及所处的位置。</p>
-<h4 id="结构化分析简单过程"><a href="#结构化分析简单过程" class="headerlink" title="结构化分析简单过程"></a>结构化分析简单过程</h4><p><img src="/2020/08/04/RequirementEngineering/pic3.png" alt="结构化分析简单过程"></p>
-<h4 id="面向对象分析简单过程"><a href="#面向对象分析简单过程" class="headerlink" title="面向对象分析简单过程"></a>面向对象分析简单过程</h4><p><img src="/2020/08/04/RequirementEngineering/pic4.png" alt="面向对象分析简单过程"></p>
+            <p>第一次看到JS中需要区别<code>===</code>和<code>==</code>的时候，我一下子将JS中的<code>==</code>和Java中的<code>.euqals()</code>画上了等号，想去做类似的理解。可是作为动态类型语言（Dynamic Typed Language），JS的值比较操作符的两端操作数可以是不同的基本类型，也就是说JS中的值比较和Java遵循着两个完全不同的体系，我们理应分开理解。</p>
+<p>这篇博客会首先通过脑图帮助大家梳理JavaScript中值比较的具体规则，这些规则或许纷繁复杂，但是我们并没有必要特别去进行记忆，因为基于这些繁杂的规则，我们在日常开发中会有与其对应的我们需要遵循的相对明了的开发规范，这篇博客的后半部分也会给出对这部分规范的总结，当然我们最好还是能够明白这些规范产生的缘由。</p>
+<h2 id="JavaScript中的值比较规则"><a href="#JavaScript中的值比较规则" class="headerlink" title="JavaScript中的值比较规则"></a>JavaScript中的值比较规则</h2><p><img src="/2020/08/11/CompareOpOfJS/pic1.png" alt="值比较规则"></p>
+<p>由上面的脑图我们可以看到，类型相同时候的比较相对来说规则非常简洁明了；类型不同时，<code>===</code>的规则也和直接，较为复杂可能需要特别记忆一下的可能就是<code>==</code>比较不同类型的情况了：这部分可能会涉及不同类型向Number类型的类型转换（脑图中可能提了一嘴引用类型向Number的类型转换，不过这篇博客没有过多涉及）；以及null和undefined之间的特殊关系。</p>
+<h2 id="JavaScript中值比较相关开发规范总结"><a href="#JavaScript中值比较相关开发规范总结" class="headerlink" title="JavaScript中值比较相关开发规范总结"></a>JavaScript中值比较相关开发规范总结</h2><p>基于上述规则，参考<a href="zh.javascript.info">现代JavaScript教程</a>和<a href="https://www.zhihu.com/question/20348948/answer/14867031" target="_blank" rel="noopener">贺师俊</a>老师的知乎回答，总结如下三点规范：</p>
+<ul>
+<li>绝大多数场景应该使用<code>===</code></li>
+<li>比较<code>null</code>和<code>undefined</code>时可以使用<code>==</code>，因为一般我们不区分<code>null</code>和<code>undefined</code>，<code>x == null</code>相当<code>x === null || x === undefined</code></li>
+<li>除非你清楚你在做什么，否则不要使用<code>&gt;、&lt;、&gt;=、&lt;=</code>去比较有可能会<code>null</code>或者<code>undefined</code>的值。正确的实践应该为对于可能为<code>null</code>或者<code>undefined的</code>值在比较前使用<code>===</code>分别检查。</li>
+</ul>
 
         </div>
         
@@ -238,7 +239,7 @@
                 
                     <p class="copyright-item">
                         <span>Permalink:</span>
-                        <span><a href="http://njussj.github.io/2020/08/04/RequirementEngineering/">http://njussj.github.io/2020/08/04/RequirementEngineering/</a></span>
+                        <span><a href="http://njussj.github.io/2020/08/11/CompareOpOfJS/">http://njussj.github.io/2020/08/11/CompareOpOfJS/</a></span>
                     </p>
                 
                 
@@ -262,7 +263,7 @@
                 <span class="tag">
                     
                     
-                        <a href="/tags/%E9%9C%80%E6%B1%82%E5%B7%A5%E7%A8%8B/"># 需求工程</a>
+                        <a href="/tags/JavaScript/"># JavaScript</a>
                     
                         
                 </span>
@@ -275,10 +276,8 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2020/08/11/CompareOpOfJS/">关于：JavaScript中值的比较</a>
             
-            
-            <a class="next" rel="next" href="/2020/08/01/ThisOfJS/">一个老八股的问题：JavaScript中的this指向</a>
+            <a class="next" rel="next" href="/2020/08/04/RequirementEngineering/">需求工程知识图谱</a>
             
         </section>
 
