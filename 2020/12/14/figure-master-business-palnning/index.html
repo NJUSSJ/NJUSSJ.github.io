@@ -12,7 +12,7 @@
 
 
 
-<title>关于：JavaScript中值的比较 | Fortune Blog</title>
+<title>Figure Master 商业策划 | Fortune Blog</title>
 
 
 
@@ -107,73 +107,11 @@
             <div class="container">
     
     
-        <div class="post-toc">
-    <div class="tocbot-list">
-    </div>
-    <div class="tocbot-list-menu">
-        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
-        <a onclick="go_top()">Back to top</a>
-        <a onclick="go_bottom()">Go to bottom</a>
-    </div>
-</div>
-
-<script>
-    document.ready(
-        function () {
-            tocbot.init({
-                tocSelector: '.tocbot-list',
-                contentSelector: '.post-content',
-                headingSelector: 'h1, h2, h3, h4, h5',
-                collapseDepth: 1,
-                orderedList: false,
-                scrollSmooth: true,
-            })
-        }
-    )
-
-    function expand_toc() {
-        var b = document.querySelector(".tocbot-toc-expand");
-        tocbot.init({
-            tocSelector: '.tocbot-list',
-            contentSelector: '.post-content',
-            headingSelector: 'h1, h2, h3, h4, h5',
-            collapseDepth: 6,
-            orderedList: false,
-            scrollSmooth: true,
-        });
-        b.setAttribute("onclick", "collapse_toc()");
-        b.innerHTML = "Collapse all"
-    }
-
-    function collapse_toc() {
-        var b = document.querySelector(".tocbot-toc-expand");
-        tocbot.init({
-            tocSelector: '.tocbot-list',
-            contentSelector: '.post-content',
-            headingSelector: 'h1, h2, h3, h4, h5',
-            collapseDepth: 1,
-            orderedList: false,
-            scrollSmooth: true,
-        });
-        b.setAttribute("onclick", "expand_toc()");
-        b.innerHTML = "Expand all"
-    }
-
-    function go_top() {
-        window.scrollTo(0, 0);
-    }
-
-    function go_bottom() {
-        window.scrollTo(0, document.body.scrollHeight);
-    }
-
-</script>
-    
 
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">关于：JavaScript中值的比较</h1>
+            <h1 class="post-title">Figure Master 商业策划</h1>
             
                 <div class="post-meta">
                     
@@ -182,14 +120,14 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">August 11, 2020&nbsp;&nbsp;10:20:12</a>
+                        Date: <a href="#">December 14, 2020&nbsp;&nbsp;13:50:56</a>
                         </span>
                     
                     
                         <span class="post-category">
                     Category:
                             
-                                <a href="/categories/FrontEnd/">FrontEnd</a>
+                                <a href="/categories/%E4%BA%A7%E5%93%81/">产品</a>
                             
                         </span>
                     
@@ -198,16 +136,15 @@
         </header>
 
         <div class="post-content">
-            <p>第一次看到JS中需要区别<code>===</code>和<code>==</code>的时候，我一下子将JS中的<code>==</code>和Java中的<code>.euqals()</code>画上了等号，想去做类似的理解。可是作为动态类型语言（Dynamic Typed Language），JS的值比较操作符的两端操作数可以是不同的基本类型，也就是说JS中的值比较和Java遵循着两个完全不同的体系，我们理应分开理解。</p>
-<p>这篇博客会首先通过脑图帮助大家梳理JavaScript中值比较的具体规则，这些规则或许纷繁复杂，但是我们并没有必要特别去进行记忆，因为基于这些繁杂的规则，我们在日常开发中会有与其对应的我们需要遵循的相对明了的开发规范，这篇博客的后半部分也会给出对这部分规范的总结，当然我们最好还是能够明白这些规范产生的缘由。</p>
-<h2 id="JavaScript中的值比较规则"><a href="#JavaScript中的值比较规则" class="headerlink" title="JavaScript中的值比较规则"></a>JavaScript中的值比较规则</h2><p><img src="/2020/08/11/CompareOpOfJS/pic1.png" alt="值比较规则"></p>
-<p>由上面的脑图我们可以看到，类型相同时候的比较相对来说规则非常简洁明了；类型不同时，<code>===</code>的规则也和直接，较为复杂可能需要特别记忆一下的可能就是<code>==</code>比较不同类型的情况了：这部分可能会涉及不同类型向Number类型的类型转换（脑图中可能提了一嘴引用类型向Number的类型转换，不过这篇博客没有过多涉及）；以及null和undefined之间的特殊关系。</p>
-<h2 id="JavaScript中值比较相关开发规范总结"><a href="#JavaScript中值比较相关开发规范总结" class="headerlink" title="JavaScript中值比较相关开发规范总结"></a>JavaScript中值比较相关开发规范总结</h2><p>基于上述规则，参考<a href="zh.javascript.info">现代JavaScript教程</a>和<a href="https://www.zhihu.com/question/20348948/answer/14867031" target="_blank" rel="noopener">贺师俊</a>老师的知乎回答，总结如下三点规范：</p>
-<ul>
-<li>绝大多数场景应该使用<code>===</code></li>
-<li>比较<code>null</code>和<code>undefined</code>时可以使用<code>==</code>，因为一般我们不区分<code>null</code>和<code>undefined</code>，<code>x == null</code>相当<code>x === null || x === undefined</code></li>
-<li>除非你清楚你在做什么，否则不要使用<code>&gt;、&lt;、&gt;=、&lt;=</code>去比较有可能会<code>null</code>或者<code>undefined</code>的值。正确的实践应该为对于可能为<code>null</code>或者<code>undefined的</code>值在比较前使用<code>===</code>分别检查。</li>
-</ul>
+            
+
+	<div class="row">
+    <embed src="figure-master-business-palnning/FigureMaster.pdf" width="100%" height="550" type="application/pdf">
+	</div>
+
+
+
+
 
         </div>
         
@@ -239,7 +176,7 @@
                 
                     <p class="copyright-item">
                         <span>Permalink:</span>
-                        <span><a href="http://njussj.github.io/2020/08/11/CompareOpOfJS/">http://njussj.github.io/2020/08/11/CompareOpOfJS/</a></span>
+                        <span><a href="http://njussj.github.io/2020/12/14/figure-master-business-palnning/">http://njussj.github.io/2020/12/14/figure-master-business-palnning/</a></span>
                     </p>
                 
                 
@@ -263,7 +200,7 @@
                 <span class="tag">
                     
                     
-                        <a href="/tags/JavaScript/"># JavaScript</a>
+                        <a href="/tags/%E4%BA%A7%E5%93%81-%E5%95%86%E4%B8%9A%E7%AD%96%E5%88%92/"># 产品 商业策划</a>
                     
                         
                 </span>
@@ -276,10 +213,8 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2020/12/14/figure-master-business-palnning/">Figure Master 商业策划</a>
             
-            
-            <a class="next" rel="next" href="/2020/08/04/RequirementEngineering/">需求工程知识图谱</a>
+            <a class="next" rel="next" href="/2020/08/11/CompareOpOfJS/">关于：JavaScript中值的比较</a>
             
         </section>
 
